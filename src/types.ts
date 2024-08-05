@@ -1,12 +1,21 @@
+export type RuleTypes = ["contains", "startsWith", "endsWith", "matches"];
+export type Shapes = ["stripe", "triangle"];
+export type Positions = [
+  "left-top",
+  "right-top",
+  "left-bottom",
+  "right-bottom",
+];
+
 export interface Label {
   id: string;
   name: string;
   bgColor: string;
   textColor: string;
-  ruleType: "contains" | "startsWith" | "endsWith" | "matches";
+  ruleType: RuleTypes[number];
   ruleValue: string;
-  shape: "stripe" | "triangle";
-  position: "left-top" | "right-top" | "left-bottom" | "right-bottom";
+  shape: Shapes[number];
+  position: Positions[number];
 }
 
 export interface Storage {

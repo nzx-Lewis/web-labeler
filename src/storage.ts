@@ -20,5 +20,5 @@ export const reducer = (storage: Storage, action: StorageAction) => {
       return action.payload;
   }
 
-  chrome.storage.sync.set(storage);
+  //chrome.storage.sync.set(storage);
 };

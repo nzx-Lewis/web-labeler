@@ -31,7 +31,12 @@ function App() {
       {window.location.hash === "#popup" ? (
         <Popup isActive={isActive} dispatch={dispatch} />
       ) : (
-        <Options labels={labels} isLoading={isLoading} />
+        <Options
+          labels={labels}
+          isActive={isActive}
+          isLoading={isLoading}
+          dispatch={dispatch}
+        />
       )}
     </MantineProvider>
   );
