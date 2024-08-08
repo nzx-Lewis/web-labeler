@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
-import { StorageAction } from "../../types.ts";
+import { OptionsAction } from "./../../options/types.ts";
 
 export interface PopupProps {
   isActive: boolean;
-  dispatch: Dispatch<StorageAction>;
+  dispatch: Dispatch<OptionsAction>;
 }

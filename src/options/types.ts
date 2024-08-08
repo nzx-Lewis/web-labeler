@@ -1,30 +1,22 @@
-export type RuleTypes = ["contains", "startsWith", "endsWith", "matches"];
-export type Shapes = ["stripe", "triangle"];
-export type Positions = [
-  "left-top",
-  "right-top",
-  "left-bottom",
-  "right-bottom",
-];
+import { ruleTypes, shapes, positions } from "./constants.ts";
 
 export interface Label {
   id: string;
   name: string;
   bgColor: string;
   textColor: string;
-  ruleType: RuleTypes[number];
+  ruleType: (typeof ruleTypes)[number];
   ruleValue: string;
-  shape: Shapes[number];
-  position: Positions[number];
+  shape: (typeof shapes)[number];
+  position: (typeof positions)[number];
 }
 
-export interface Storage {
-  isLoading: boolean;
+export interface Options {
   labels: Label[];
   isActive: boolean;
 }
 
-export type StorageAction =
+export type OptionsAction =
   | {
       type: "addLabel";
       payload: { label: Label };
@@ -42,6 +34,6 @@ export type StorageAction =
       payload?: { force: true };
     }
   | {
-      type: "setStorage";
-      payload: Storage;
+      type: "initialize";
+      payload: Options;
     };
