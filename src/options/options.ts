@@ -1,4 +1,5 @@
 import { Options, OptionsAction } from "./types.ts";
+import { v4 as uuidv4 } from "uuid";
 
 export const optionsReducer = (options: Options, action: OptionsAction) => {
   switch (action?.type) {
@@ -8,7 +9,7 @@ export const optionsReducer = (options: Options, action: OptionsAction) => {
         labels: [
           ...options.labels,
           {
-            id: Symbol(),
+            id: uuidv4(),
             ...action.payload.label,
           },
         ],
@@ -24,8 +25,13 @@ export const optionsReducer = (options: Options, action: OptionsAction) => {
       return {
         ...options,
         labels: options.labels.filter(
-          (label) => label.id === action.payload.id,
+          (label) => label.id !== action.payload.id,
         ),
+      };
+    case "deleteAllLabels":
+      return {
+        ...options,
+        labels: [],
       };
     case "toggleActive":
       return {

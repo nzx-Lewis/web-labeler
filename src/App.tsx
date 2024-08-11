@@ -5,6 +5,7 @@ import { optionsReducer } from "./options/options.ts";
 import { usePersistentReducer } from "./Hooks/PersistedReducer";
 import { Options, OptionsAction } from "./options/types.ts";
 import "@mantine/core/styles.css";
+import "./style.scss";
 
 function App() {
   const {

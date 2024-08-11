@@ -1,7 +1,7 @@
 import { ruleTypes, shapes, positions } from "./constants.ts";
 
 export interface Label {
-  id: symbol;
+  id: string;
   name: string;
   bgColor: string;
   textColor: string;
@@ -34,6 +34,9 @@ export type OptionsAction =
   | {
       type: "toggleActive";
       payload?: { force: true };
+    }
+  | {
+      type: "deleteAllLabels";
     }
   | {
       type: "initialize";
