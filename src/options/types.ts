@@ -1,7 +1,7 @@
 import { ruleTypes, shapes, positions } from "./constants.ts";
 
 export interface Label {
-  id: string;
+  id: symbol;
   name: string;
   bgColor: string;
   textColor: string;
@@ -11,6 +11,8 @@ export interface Label {
   position: (typeof positions)[number];
 }
 
+export type LabelWithoutId = Omit<Label, "id">;
+
 export interface Options {
   labels: Label[];
   isActive: boolean;
@@ -19,7 +21,7 @@ export interface Options {
 export type OptionsAction =
   | {
       type: "addLabel";
-      payload: { label: Label };
+      payload: { label: LabelWithoutId };
     }
   | {
       type: "updateLabel";
@@ -27,7 +29,7 @@ export type OptionsAction =
     }
   | {
       type: "deleteLabel";
-      payload: { labelId: string };
+      payload: Pick<Label, "id">;
     }
   | {
       type: "toggleActive";

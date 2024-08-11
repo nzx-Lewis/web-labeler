@@ -8,7 +8,7 @@ function LabelList({ labels }: LabelListProps) {
       ) : (
         <ul>
           {labels.map((label) => (
-            <li>{label.name}</li>
+            <li>{label.name || "[noname]"}</li>
           ))}
         </ul>
       )}

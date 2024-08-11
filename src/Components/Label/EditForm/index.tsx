@@ -13,44 +13,39 @@ import {
   shapes,
 } from "../../../options/constants.ts";
 import { useForm } from "@mantine/form";
+import { LabelEditFormProps } from "./types.ts";
 
-function LabelEditForm() {
+function LabelEditForm({ label, dispatch }: LabelEditFormProps) {
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
-      name: "",
-      bgColor: colorSwatches[0],
-      textColor: colorSwatches[colorSwatches.length - 1],
-      shape: shapes[0],
-      position: positions[0],
-      ruleType: ruleTypes[0],
-      ruleValue: "*",
+      name: label?.name || "",
+      bgColor: label?.bgColor || colorSwatches[0],
+      textColor: label?.textColor || colorSwatches[colorSwatches.length - 1],
+      shape: label?.shape || shapes[0],
+      position: label?.position || positions[0],
+      ruleType: label?.ruleType || ruleTypes[0],
+      ruleValue: label?.ruleValue || "*",
     },
     validate: {
-      name: (value) => {
-        return !value.trim().length ? "Type label name" : null;
+      ruleValue: (value) => {
+        return !value.trim().length ? "The rule value can't be empty" : null;
       },
     },
   });
 
   return (
     <form
-      onSubmit={form.onSubmit(
-        (values, event) => {
-          console.log(
-            "onSubmit",
-            values, // <- form.getValues() at the moment of submit
-            event, // <- form element submit event
-          );
-        },
-        // (validationErrors, values, event) => {
-        //   console.log(
-        //     validationErrors, // <- form.errors at the moment of submit
-        //     values, // <- form.getValues() at the moment of submit
-        //     event, // <- form element submit event
-        //   );
-        // },
-      )}
+      onSubmit={form.onSubmit((values) => {
+        if (!label) {
+          dispatch({ type: "addLabel", payload: { label: { ...values } } });
+        } else {
+          dispatch({
+            type: "updateLabel",
+            payload: { label: { id: label.id, ...values } },
+          });
+        }
+      })}
     >
       <Fieldset legend="Appearance & Position">
         <TextInput

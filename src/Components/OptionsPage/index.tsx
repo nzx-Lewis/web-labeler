@@ -23,7 +23,7 @@ function OptionsPage({ options, dispatch }: OptionsPageProps) {
 
       <Space h="md"></Space>
 
-      <LabelEditForm></LabelEditForm>
+      <LabelEditForm dispatch={dispatch}></LabelEditForm>
     </Container>
   );
 }
