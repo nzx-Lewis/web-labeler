@@ -14,5 +14,12 @@
     "default_popup": "/index.html#popup"
   },
 
+  "content_scripts": [
+    {
+      "js": ["assets/contentScript.js"],
+      "matches": ["*://*/*"]
+    }
+  ],
+
   "permissions": ["storage"]
 }
