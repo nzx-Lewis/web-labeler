@@ -8,7 +8,7 @@ import "@mantine/core/styles.css";
 import "./style.scss";
 
 //TODO:
-// 1. Opacity and isActive props for Labels
+// ☑️ 1. Opacity and isActive props for Labels
 // 2. Multi rules for one label
 // 3. Default labels (for first launch)
 // 4. Label preview in edit form

@@ -5,10 +5,12 @@ export interface Label {
   name: string;
   bgColor: string;
   textColor: string;
+  opacity: number;
   ruleType: (typeof ruleTypes)[number];
   ruleValue: string;
   shape: (typeof shapes)[number];
   position: (typeof positions)[number];
+  isActive: boolean;
 }
 
 export type LabelWithoutId = Omit<Label, "id">;
@@ -26,6 +28,10 @@ export type OptionsAction =
   | {
       type: "updateLabel";
       payload: { label: Label };
+    }
+  | {
+      type: "toggleLabelStatus";
+      payload: Pick<Label, "id">;
     }
   | {
       type: "deleteLabel";

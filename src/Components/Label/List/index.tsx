@@ -1,5 +1,5 @@
 import { LabelListProps } from "./types.ts";
-import { Badge, Group, Table, Button, Stack } from "@mantine/core";
+import { Badge, Group, Table, Button, Stack, Switch } from "@mantine/core";
 import { IconEdit, IconPlus, IconTrash } from "@tabler/icons-react";
 import LabelEditForm from "../EditForm";
 import { useState } from "react";
@@ -28,6 +28,7 @@ function LabelList({ labels, dispatch }: LabelListProps) {
           <Table.Tr>
             <Table.Th>Label Name</Table.Th>
             <Table.Th>Rule</Table.Th>
+            <Table.Th>Status</Table.Th>
             <Table.Th>Actions</Table.Th>
           </Table.Tr>
         </Table.Thead>
@@ -53,6 +54,17 @@ function LabelList({ labels, dispatch }: LabelListProps) {
                 </Table.Td>
                 <Table.Td>
                   {label.ruleType} - {label.ruleValue}
+                </Table.Td>
+                <Table.Td>
+                  <Switch
+                    checked={label.isActive}
+                    onChange={() => {
+                      dispatch({
+                        type: "toggleLabelStatus",
+                        payload: { id: label.id },
+                      });
+                    }}
+                  />
                 </Table.Td>
                 <Table.Td>
                   <Group gap="xs">

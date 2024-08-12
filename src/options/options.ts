@@ -21,6 +21,15 @@ export const optionsReducer = (options: Options, action: OptionsAction) => {
           label.id === action.payload.label.id ? action.payload.label : label,
         ),
       };
+    case "toggleLabelStatus":
+      return {
+        ...options,
+        labels: options.labels.map((label) =>
+          label.id === action.payload.id
+            ? { ...label, isActive: !label.isActive }
+            : label,
+        ),
+      };
     case "deleteLabel":
       return {
         ...options,

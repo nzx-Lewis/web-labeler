@@ -33,7 +33,10 @@ class EnvLabel {
 
   private matchLabel = (hostname: string, labels: Label[]): Label | false => {
     for (const label of labels) {
-      if (this.checkRule(label.ruleType, label.ruleValue, hostname)) {
+      if (
+        label.isActive &&
+        this.checkRule(label.ruleType, label.ruleValue, hostname)
+      ) {
         return label;
       }
     }
@@ -65,6 +68,10 @@ class EnvLabel {
     this.labelElement.classList.add(classes?.[label.position]);
     this.labelElement.innerHTML = label.name;
     this.labelElement.style.setProperty("--label-text-color", label.textColor);
+    this.labelElement.style.setProperty(
+      "--label-text-color",
+      String(label.opacity),
+    );
     this.labelElement.style.setProperty(
       "--label-background-color",
       label.bgColor,
