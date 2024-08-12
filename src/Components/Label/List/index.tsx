@@ -9,8 +9,7 @@ function LabelList({ labels, dispatch }: LabelListProps) {
   const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
   const [selectedLabel, setSelectedLabel] = useState<Label | null>(null);
   const editLabelHandler = (label: Label) => {
-    setSelectedLabel(label);
-    setIsEditFormOpen(true);
+    setSelectedLabel({ ...label });
   };
 
   const addLabelHandler = () => {
@@ -18,7 +17,7 @@ function LabelList({ labels, dispatch }: LabelListProps) {
   };
 
   const onCloseEditForm = () => {
-    //setSelectedLabel(null);
+    setSelectedLabel(null);
     setIsEditFormOpen(false);
   };
 
@@ -113,7 +112,7 @@ function LabelList({ labels, dispatch }: LabelListProps) {
       </Group>
 
       <LabelEditForm
-        isOpen={isEditFormOpen}
+        isOpen={isEditFormOpen || !!selectedLabel}
         onClose={onCloseEditForm}
         dispatch={dispatch}
         {...(selectedLabel ? { label: selectedLabel } : {})}

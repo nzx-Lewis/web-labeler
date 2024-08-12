@@ -15,6 +15,8 @@ import {
 } from "../../../options/constants.ts";
 import { useForm } from "@mantine/form";
 import { LabelEditFormProps } from "./types.ts";
+import { LabelWithoutId } from "../../../options/types.ts";
+import { useEffect } from "react";
 
 function LabelEditForm({
   isOpen,
@@ -22,16 +24,16 @@ function LabelEditForm({
   label,
   dispatch,
 }: LabelEditFormProps) {
-  const form = useForm({
+  const form = useForm<LabelWithoutId>({
     mode: "uncontrolled",
     initialValues: {
-      name: label?.name || "",
-      bgColor: label?.bgColor || colorSwatches[0],
-      textColor: label?.textColor || colorSwatches[colorSwatches.length - 1],
-      shape: label?.shape || shapes[0],
-      position: label?.position || positions[0],
-      ruleType: label?.ruleType || ruleTypes[0],
-      ruleValue: label?.ruleValue || "*",
+      name: "",
+      bgColor: colorSwatches[0],
+      textColor: colorSwatches[colorSwatches.length - 1],
+      shape: shapes[0],
+      position: positions[0],
+      ruleType: ruleTypes[0],
+      ruleValue: "*",
     },
     validate: {
       ruleValue: (value) => {
@@ -39,6 +41,14 @@ function LabelEditForm({
       },
     },
   });
+
+  useEffect(() => {
+    if (label) {
+      form.setValues(label);
+    } else {
+      form.reset();
+    }
+  }, [label]);
 
   return (
     <Modal

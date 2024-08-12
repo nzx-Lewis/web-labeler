@@ -5,7 +5,7 @@ export const ruleTypes = [
   "matches",
 ] as const;
 
-export const shapes = ["stripe", "triangle"] as const;
+export const shapes = ["ribbon", "triangle"] as const;
 
 export const positions = [
   "left-top",

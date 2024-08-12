@@ -17,6 +17,7 @@
   "content_scripts": [
     {
       "js": ["assets/contentScript.js"],
+      "css": ["assets/contentScript.css"],
       "matches": ["*://*/*"]
     }
   ],
