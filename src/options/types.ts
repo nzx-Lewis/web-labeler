@@ -6,11 +6,15 @@ export interface Label {
   bgColor: string;
   textColor: string;
   opacity: number;
-  ruleType: (typeof ruleTypes)[number];
-  ruleValue: string;
+  rules: Rule[];
   shape: (typeof shapes)[number];
   position: (typeof positions)[number];
   isActive: boolean;
+}
+
+export interface Rule {
+  type: (typeof ruleTypes)[number];
+  value: string;
 }
 
 export type LabelWithoutId = Omit<Label, "id">;

@@ -4,12 +4,13 @@ import {
   Fieldset,
   Modal,
   SegmentedControl,
-  Text,
   TextInput,
   Slider,
   Stack,
   Input,
   Switch,
+  Select,
+  Flex,
 } from "@mantine/core";
 import {
   colorSwatches,
@@ -21,6 +22,7 @@ import { useForm } from "@mantine/form";
 import { LabelEditFormProps } from "./types.ts";
 import { LabelWithoutId } from "../../../options/types.ts";
 import { useEffect } from "react";
+import { IconDeviceFloppy, IconPlus, IconTrash } from "@tabler/icons-react";
 
 function LabelEditForm({
   isOpen,
@@ -37,14 +39,13 @@ function LabelEditForm({
       opacity: 0.75,
       shape: shapes[0],
       position: positions[0],
-      ruleType: ruleTypes[0],
-      ruleValue: "*",
+      rules: [{ type: ruleTypes[0], value: "" }],
       isActive: true,
     },
     validate: {
-      ruleValue: (value) => {
-        return !value.trim().length ? "The rule value can't be empty" : null;
-      },
+      // ruleValues: (value) => {
+      //   return !value.trim().length ? "The rule value can't be empty" : null;
+      // },
     },
   });
 
@@ -58,10 +59,10 @@ function LabelEditForm({
 
   return (
     <Modal
+      size="lg"
       opened={isOpen}
       title={label ? "Edit Label" : "New Label"}
       onClose={onClose}
-      centered
     >
       <form
         onSubmit={form.onSubmit((values) => {
@@ -103,8 +104,8 @@ function LabelEditForm({
 
             <Input.Wrapper label="Opacity">
               <Slider
-                color="blue"
-                label={(value) => `${value * 100}%`}
+                color="gray"
+                label={(value) => `${Math.round(value * 100)}%`}
                 min={0.1}
                 max={1}
                 step={0.05}
@@ -121,7 +122,7 @@ function LabelEditForm({
               />
             </Input.Wrapper>
 
-            <Input.Wrapper label="Position">
+            <Input.Wrapper label={<Input.Label pr="md">Position</Input.Label>}>
               <SegmentedControl
                 data={[...positions]}
                 key={form.key("position")}
@@ -133,20 +134,49 @@ function LabelEditForm({
 
         <Fieldset legend="Rules" mt="md">
           <Stack gap="xs">
-            <Text size="sm" fw={500} mt={3}>
-              Rule type for URL
-            </Text>
-            <SegmentedControl
-              data={[...ruleTypes]}
-              key={form.key("ruleType")}
-              {...form.getInputProps("ruleType")}
-            />
-            <TextInput
-              label="Rule value"
-              placeholder="Rule value"
-              key={form.key("ruleValue")}
-              {...form.getInputProps("ruleValue")}
-            />
+            {form.getValues().rules.map((_item, index) => (
+              <Flex key={`rule_${index}`} direction="row" gap="xs">
+                <Select
+                  data={[...ruleTypes]}
+                  key={form.key(`rules.${index}.type`)}
+                  {...form.getInputProps(`rules.${index}.type`)}
+                  style={{ maxWidth: "120px" }}
+                  allowDeselect={false}
+                />
+                <TextInput
+                  placeholder="Rule value"
+                  key={form.key(`rules.${index}.value`)}
+                  {...form.getInputProps(`rules.${index}.value`)}
+                  style={{ flexGrow: 1 }}
+                />
+                <Button
+                  color="gray"
+                  variant="light"
+                  p="xs"
+                  onClick={() => {
+                    form.removeListItem("rules", index);
+                  }}
+                >
+                  <IconTrash size={14}></IconTrash>
+                </Button>
+              </Flex>
+            ))}
+
+            <Button
+              size="xs"
+              color="gray"
+              variant="light"
+              leftSection={<IconPlus size={14} />}
+              onClick={() => {
+                console.log("here");
+                form.insertListItem("rules", {
+                  type: ruleTypes[0],
+                  value: "",
+                });
+              }}
+            >
+              Add Rule
+            </Button>
           </Stack>
         </Fieldset>
 
@@ -158,7 +188,11 @@ function LabelEditForm({
           />
         </Fieldset>
 
-        <Button type="submit" mt="md">
+        <Button
+          type="submit"
+          mt="md"
+          leftSection={<IconDeviceFloppy size={14} />}
+        >
           Save
         </Button>
       </form>

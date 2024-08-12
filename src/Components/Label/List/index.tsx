@@ -1,6 +1,21 @@
 import { LabelListProps } from "./types.ts";
-import { Badge, Group, Table, Button, Stack, Switch } from "@mantine/core";
-import { IconEdit, IconPlus, IconTrash } from "@tabler/icons-react";
+import {
+  Badge,
+  Group,
+  Table,
+  Button,
+  Stack,
+  Switch,
+  HoverCard,
+  List,
+} from "@mantine/core";
+import {
+  IconEdit,
+  IconInfoCircle,
+  IconPlus,
+  IconTag,
+  IconTrash,
+} from "@tabler/icons-react";
 import LabelEditForm from "../EditForm";
 import { useState } from "react";
 import { Label } from "../../../options/types.ts";
@@ -27,7 +42,7 @@ function LabelList({ labels, dispatch }: LabelListProps) {
         <Table.Thead>
           <Table.Tr>
             <Table.Th>Label Name</Table.Th>
-            <Table.Th>Rule</Table.Th>
+            <Table.Th>Rules</Table.Th>
             <Table.Th>Status</Table.Th>
             <Table.Th>Actions</Table.Th>
           </Table.Tr>
@@ -35,7 +50,7 @@ function LabelList({ labels, dispatch }: LabelListProps) {
         <Table.Tbody>
           {!labels.length ? (
             <Table.Tr>
-              <Table.Td colSpan={3} align="center">
+              <Table.Td colSpan={4} align="center">
                 no labels
               </Table.Td>
             </Table.Tr>
@@ -53,7 +68,32 @@ function LabelList({ labels, dispatch }: LabelListProps) {
                   </Badge>
                 </Table.Td>
                 <Table.Td>
-                  {label.ruleType} - {label.ruleValue}
+                  <HoverCard shadow="md">
+                    <HoverCard.Target>
+                      <Badge
+                        size="lg"
+                        variant="default"
+                        color="gray"
+                        radius="xs"
+                        leftSection={
+                          !!label.rules.length && <IconInfoCircle size={14} />
+                        }
+                      >
+                        {label.rules.length}
+                      </Badge>
+                    </HoverCard.Target>
+                    {!!label.rules.length && (
+                      <HoverCard.Dropdown>
+                        <List size="xs" icon={<IconTag size={14} />} center>
+                          {label.rules.map((rule) => (
+                            <List.Item>
+                              {rule.type}: {rule.value}
+                            </List.Item>
+                          ))}
+                        </List>
+                      </HoverCard.Dropdown>
+                    )}
+                  </HoverCard>
                 </Table.Td>
                 <Table.Td>
                   <Switch
