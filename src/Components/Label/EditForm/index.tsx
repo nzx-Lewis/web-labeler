@@ -43,9 +43,10 @@ function LabelEditForm({
       isActive: true,
     },
     validate: {
-      // ruleValues: (value) => {
-      //   return !value.trim().length ? "The rule value can't be empty" : null;
-      // },
+      rules: {
+        value: (value) =>
+          !value.trim().length ? "The rule value can't be empty" : null,
+      },
     },
   });
 
