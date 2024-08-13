@@ -23,6 +23,8 @@
   background-color: var(--label-background-color);
   opacity: var(--label-opacity);
 
+  //TODO: fade in animation (try to use transition on color)
+
   &.ribbon{
     width:200px;
     height:25px;

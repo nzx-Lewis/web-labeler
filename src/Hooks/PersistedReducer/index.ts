@@ -8,6 +8,7 @@ interface resetAction<State> {
 export function usePersistentReducer<State, Action>(
   reducer: (state: State, action: Action | resetAction<State>) => State,
   initialState: State,
+  defaultState: State,
   storageKey: string,
 ): { state: State; dispatch: React.Dispatch<Action>; isInitialized: boolean } {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -15,12 +16,15 @@ export function usePersistentReducer<State, Action>(
 
   const initializeStorage = useCallback(async () => {
     const storage = await chrome.storage.sync.get(storageKey);
-    if (typeof storage?.[storageKey] !== "undefined") {
-      dispatch({
-        type: "initialize",
-        payload: storage?.[storageKey] as State,
-      });
-    }
+
+    dispatch({
+      type: "initialize",
+      payload:
+        typeof storage?.[storageKey] === "undefined"
+          ? defaultState
+          : (storage[storageKey] as State),
+    });
+
     setIsInitialized(true);
   }, [storageKey]);
 
