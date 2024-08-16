@@ -74,7 +74,7 @@ function LabelEditForm({ label, dispatch, onSave }: LabelEditFormProps) {
     >
       <Fieldset legend="Appearance & Position">
         <Group align="stretch" wrap="nowrap">
-          <Stack gap="xs">
+          <Stack gap="xs" style={{ width: "400px" }}>
             <TextInput
               label="Name"
               placeholder="Name"

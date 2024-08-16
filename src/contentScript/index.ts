@@ -68,7 +68,7 @@ class EnvLabel {
     this.labelElement.className = classes.label;
     this.labelElement.classList.add(classes?.[label.shape]);
     this.labelElement.classList.add(classes?.[label.position]);
-    this.labelElement.innerHTML = label.name;
+    this.labelElement.innerHTML = label.shape === "frame" ? "" : label.name;
     this.labelElement.style.setProperty("--label-text-color", label.textColor);
     this.labelElement.style.setProperty(
       "--label-opacity",

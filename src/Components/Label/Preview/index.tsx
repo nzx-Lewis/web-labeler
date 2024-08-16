@@ -25,7 +25,7 @@ function LabelPreview({ label }: LabelPreviewProps) {
           } as React.CSSProperties
         }
       >
-        {label.name}
+        {label.shape !== "frame" && label.name}
       </div>
     </Card>
   );
