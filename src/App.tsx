@@ -1,4 +1,5 @@
 import { MantineProvider } from "@mantine/core";
+import { ModalsProvider } from "@mantine/modals";
 import Popup from "./Components/Popup";
 import OptionsPage from "./Components/OptionsPage";
 import { optionsReducer } from "./options/options.ts";
@@ -12,8 +13,7 @@ import "./style.scss";
 // ☑️ 1. Opacity and isActive props for Labels
 // ☑️ 2. Multi rules for one label
 // ☑️ 3. Default labels (for the first launch)
-// 4. Label preview in edit form
-// ---- refactoring ---
+// ☑️ 4. Label preview in edit form
 // 5. Import/export setting from file
 // 6. Import setting from url
 // 6.1 By user action (sync button)
@@ -47,12 +47,14 @@ function App() {
 
   return (
     <MantineProvider>
-      {isReady &&
-        (window.location.hash === "#popup" ? (
-          <Popup isActive={options.isActive} dispatch={dispatch} />
-        ) : (
-          <OptionsPage options={options} dispatch={dispatch} />
-        ))}
+      <ModalsProvider>
+        {isReady &&
+          (window.location.hash === "#popup" ? (
+            <Popup isActive={options.isActive} dispatch={dispatch} />
+          ) : (
+            <OptionsPage options={options} dispatch={dispatch} />
+          ))}
+      </ModalsProvider>
     </MantineProvider>
   );
 }

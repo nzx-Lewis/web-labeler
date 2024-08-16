@@ -16,26 +16,10 @@ import {
   IconTag,
   IconTrash,
 } from "@tabler/icons-react";
+import { modals } from "@mantine/modals";
 import LabelEditForm from "../EditForm";
-import { useState } from "react";
-import { Label } from "../../../options/types.ts";
 
 function LabelList({ labels, dispatch }: LabelListProps) {
-  const [isEditFormOpen, setIsEditFormOpen] = useState<boolean>(false);
-  const [selectedLabel, setSelectedLabel] = useState<Label | null>(null);
-  const editLabelHandler = (label: Label) => {
-    setSelectedLabel({ ...label });
-  };
-
-  const addLabelHandler = () => {
-    setIsEditFormOpen(true);
-  };
-
-  const onCloseEditForm = () => {
-    setSelectedLabel(null);
-    setIsEditFormOpen(false);
-  };
-
   return (
     <Stack>
       <Table verticalSpacing="sm" highlightOnHover>
@@ -48,7 +32,7 @@ function LabelList({ labels, dispatch }: LabelListProps) {
           </Table.Tr>
         </Table.Thead>
         <Table.Tbody>
-          {!labels.length ? (
+          {!labels?.length ? (
             <Table.Tr>
               <Table.Td colSpan={4} align="center">
                 no labels
@@ -113,7 +97,17 @@ function LabelList({ labels, dispatch }: LabelListProps) {
                       variant="light"
                       leftSection={<IconEdit size={14} />}
                       onClick={() => {
-                        editLabelHandler(label);
+                        modals.open({
+                          title: "Edit label",
+                          size: "auto",
+                          children: (
+                            <LabelEditForm
+                              label={label}
+                              dispatch={dispatch}
+                              onSave={() => modals.closeAll()}
+                            />
+                          ),
+                        });
                       }}
                     >
                       Edit
@@ -144,7 +138,18 @@ function LabelList({ labels, dispatch }: LabelListProps) {
           size="xs"
           variant="light"
           leftSection={<IconPlus size={14} />}
-          onClick={addLabelHandler}
+          onClick={() => {
+            modals.open({
+              title: "New Label",
+              size: "auto",
+              children: (
+                <LabelEditForm
+                  dispatch={dispatch}
+                  onSave={() => modals.closeAll()}
+                />
+              ),
+            });
+          }}
         >
           Add Label
         </Button>
@@ -162,13 +167,6 @@ function LabelList({ labels, dispatch }: LabelListProps) {
           </Button>
         )}
       </Group>
-
-      <LabelEditForm
-        isOpen={isEditFormOpen || !!selectedLabel}
-        onClose={onCloseEditForm}
-        dispatch={dispatch}
-        {...(selectedLabel ? { label: selectedLabel } : {})}
-      ></LabelEditForm>
     </Stack>
   );
 }
