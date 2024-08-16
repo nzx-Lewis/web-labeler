@@ -17,8 +17,6 @@ export interface Rule {
   value: string;
 }
 
-export type LabelWithoutId = Omit<Label, "id">;
-
 export interface Options {
   labels: Label[];
   isActive: boolean;
@@ -27,7 +25,7 @@ export interface Options {
 export type OptionsAction =
   | {
       type: "addLabel";
-      payload: { label: LabelWithoutId };
+      payload: { label: Omit<Label, "id"> };
     }
   | {
       type: "updateLabel";

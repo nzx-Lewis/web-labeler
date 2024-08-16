@@ -34,6 +34,11 @@ function LabelEditForm({ label, dispatch, onSave }: LabelEditFormProps) {
       position: positions[0],
       rules: [{ type: ruleTypes[0], value: "" }],
     },
+    enhanceGetInputProps: (payload) => ({
+      disabled:
+        (payload.field === "textColor" || payload.field === "position") &&
+        payload.form.values.shape === "frame",
+    }),
     validate: {
       rules: {
         value: (value) =>

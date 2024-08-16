@@ -1,6 +1,5 @@
 import { Label } from "../../../options/types.ts";
 import classes from "./style.module.scss";
-import labelClasses from "../../../contentScript/style.module.scss";
 import clsx from "clsx";
 import { Card } from "@mantine/core";
 
@@ -13,9 +12,9 @@ function LabelPreview({ label }: LabelPreviewProps) {
     <Card padding="lg" radius="sm" withBorder className={classes.labelPreview}>
       <div
         className={clsx(
-          labelClasses.label,
-          labelClasses[label.shape],
-          labelClasses[label.position],
+          classes.label,
+          classes[label.shape],
+          classes[label.position],
         )}
         style={
           {
