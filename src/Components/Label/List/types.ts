@@ -4,4 +4,5 @@ import { Dispatch } from "react";
 export interface LabelListProps {
   labels: Label[];
   dispatch: Dispatch<OptionsAction>;
+  isStatusSwitchDisabled?: boolean;
 }

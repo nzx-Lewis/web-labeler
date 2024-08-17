@@ -19,7 +19,11 @@ import {
 import { modals } from "@mantine/modals";
 import LabelEditForm from "../EditForm";
 
-function LabelList({ labels, dispatch }: LabelListProps) {
+function LabelList({
+  labels,
+  dispatch,
+  isStatusSwitchDisabled,
+}: LabelListProps) {
   return (
     <Stack>
       <Table verticalSpacing="sm" highlightOnHover>
@@ -63,7 +67,7 @@ function LabelList({ labels, dispatch }: LabelListProps) {
                           !!label.rules.length && <IconInfoCircle size={14} />
                         }
                       >
-                        {label.rules.length}
+                        {label.rules.length || "-"}
                       </Badge>
                     </HoverCard.Target>
                     {!!label.rules.length && (
@@ -81,6 +85,7 @@ function LabelList({ labels, dispatch }: LabelListProps) {
                 </Table.Td>
                 <Table.Td>
                   <Switch
+                    disabled={isStatusSwitchDisabled}
                     checked={label.isActive}
                     onChange={() => {
                       dispatch({
