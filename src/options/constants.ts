@@ -1,13 +1,13 @@
-export const ruleTypes = [
+export const ruleTypes: string[] = [
   "contains",
   "startsWith",
   "endsWith",
   "matches",
 ] as const;
 
-export const shapes = ["ribbon", "triangle", "frame"] as const;
+export const shapes: string[] = ["ribbon", "triangle", "frame"] as const;
 
-export const positions = [
+export const positions: string[] = [
   "left-top",
   "right-top",
   "left-bottom",
