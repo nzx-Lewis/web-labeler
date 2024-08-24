@@ -16,7 +16,7 @@ export const labelSchema: Schema<Label> = {
     val.filter(
       (item) =>
         ruleTypes.includes(item?.type) && typeof item?.value === "string",
-    ).length === 0,
+    ).length === val.length,
   opacity: (val) => typeof val === "number" && val > 0 && val < 1,
   isActive: (val) => typeof val === "boolean",
 };

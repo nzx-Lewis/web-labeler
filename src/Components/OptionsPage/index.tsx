@@ -41,7 +41,7 @@ function OptionsPage({ options, dispatch }: OptionsPageProps) {
           />
         </Paper>
 
-        <ConfigurationManager labels={options.labels} />
+        <ConfigurationManager labels={options.labels} dispatch={dispatch} />
       </Stack>
     </Container>
   );

@@ -4,7 +4,6 @@ import { ConfigurationExportProps } from "./types.ts";
 
 function ConfigurationExport({ labels }: ConfigurationExportProps) {
   const exportLabels = () => {
-    console.log(labels);
     const file = new File(
       [JSON.stringify(labels)],
       `Labels-${new Date().toISOString().split("T")[0]}.json`,

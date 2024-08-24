@@ -1,8 +1,8 @@
-export type Schema<Item> = {
+export type Schema<Item extends object> = {
   [K in keyof Item]: (val: unknown) => boolean;
 };
 
-export type SchemaValidator<Item, Schema extends object> = (
+export type SchemaValidator<Item extends object> = (
   item: Item,
-  schema: Schema,
+  schema: Schema<Item>,
 ) => { result: boolean; messages?: string[] };

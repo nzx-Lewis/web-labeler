@@ -14,7 +14,7 @@ import "./style.scss";
 // ☑️ 2. Multi rules for one label
 // ☑️ 3. Default labels (for the first launch)
 // ☑️ 4. Label preview in edit form
-// 5. Import/export setting from file
+// ☑️ 5. Import/export setting from/to file
 // 6. Import setting from url
 // 6.1 By user action (sync button)
 // 6.2 By timer (autoupdate)
