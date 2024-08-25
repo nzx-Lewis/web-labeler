@@ -1,9 +1,9 @@
 import { MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
-import Popup from "./Components/Popup";
-import OptionsPage from "./Components/OptionsPage";
+import Popup from "./pages/Popup";
+import OptionsPage from "./pages/OptionsPage";
 import { optionsReducer } from "./options/options.ts";
-import { usePersistentReducer } from "./Hooks/PersistedReducer";
+import { usePersistentReducer } from "./hooks/usePersistedReducer";
 import { Options, OptionsAction } from "./options/types.ts";
 import defaultLabels from "./options/defaulLabels.ts";
 import "@mantine/core/styles.css";

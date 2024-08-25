@@ -8,8 +8,8 @@ import {
   Image,
 } from "@mantine/core";
 import { OptionsPageProps } from "./types.ts";
-import LabelList from "../Label";
-import ConfigurationManager from "../ConfigurationManager";
+import LabelList from "../../components/Label";
+import ConfigurationManager from "../../components/ConfigurationManager";
 
 function OptionsPage({ options, dispatch }: OptionsPageProps) {
   return (
