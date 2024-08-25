@@ -1,10 +1,10 @@
-import { Label } from "../../options/types.ts";
+import { Label } from "./types.ts";
 import { validate as uuidValidate } from "uuid";
-import { isHexColor } from "../general.ts";
-import { positions, ruleTypes, shapes } from "../../options/constants.ts";
-import { Schema } from "./types.ts";
+import { isHexColor } from "../utils/schemaValidator";
+import { positions, ruleTypes, shapes } from "./constants.ts";
+import { Schema } from "../utils/schemaValidator";
 
-export const labelSchema: Schema<Label> = {
+export const validationSchema: Schema<Label> = {
   id: (val) => typeof val === "string" && uuidValidate(val),
   name: (val) => typeof val === "string",
   bgColor: (val) => typeof val === "string" && isHexColor(val),

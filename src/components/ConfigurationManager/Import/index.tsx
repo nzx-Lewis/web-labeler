@@ -1,8 +1,8 @@
 import { Button, FileButton } from "@mantine/core";
 import { IconUpload } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { validate } from "../../../utils/schemaValidator/validator.ts";
-import { labelSchema } from "../../../utils/schemaValidator/labelSchema.ts";
+import validate from "../../../utils/schemaValidator";
+import { validationSchema } from "../../../options/validationSchema.ts";
 import { ConfigurationImportProps } from "./types.ts";
 
 function ConfigurationImport({ dispatch }: ConfigurationImportProps) {
@@ -25,7 +25,10 @@ function ConfigurationImport({ dispatch }: ConfigurationImportProps) {
           throw new Error("The file doesn't contain an array of labels ");
 
         for (const label of labels) {
-          const { result: isValid, messages } = validate(label, labelSchema);
+          const { result: isValid, messages } = validate(
+            label,
+            validationSchema,
+          );
           if (!isValid) {
             throw new Error(messages?.join("; "));
             break;
