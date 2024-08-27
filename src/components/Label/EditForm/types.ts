@@ -6,3 +6,5 @@ export interface LabelEditFormProps {
   label?: Label;
   dispatch: Dispatch<OptionsAction>;
 }
+
+export type LabelEditFormValues = Omit<Label, "id" | "isActive">;
