@@ -46,7 +46,7 @@ function App() {
   );
 
   return (
-    <MantineProvider>
+    <MantineProvider defaultColorScheme="auto">
       <ModalsProvider>
         {isReady &&
           (window.location.hash === "#popup" ? (

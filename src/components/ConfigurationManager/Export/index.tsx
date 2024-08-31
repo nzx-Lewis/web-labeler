@@ -28,7 +28,7 @@ function ConfigurationExport({ labels }: ConfigurationExportProps) {
     <Button
       disabled={!labels.length}
       onClick={exportLabels}
-      variant="white"
+      variant="default"
       size="xs"
       leftSection={<IconDownload size={16} />}
     >

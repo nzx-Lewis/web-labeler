@@ -10,6 +10,8 @@ import {
 import { OptionsPageProps } from "./types.ts";
 import LabelList from "../../components/Label";
 import ConfigurationManager from "../../components/ConfigurationManager";
+import ThemeSwitcher from "../../components/ThemeSwitcher";
+import classes from "./style.module.scss";
 
 function OptionsPage({ options, dispatch }: OptionsPageProps) {
   return (
@@ -22,18 +24,21 @@ function OptionsPage({ options, dispatch }: OptionsPageProps) {
               WebLabeler
             </Title>
           </Group>
-          <Switch
-            size="lg"
-            onLabel="On"
-            offLabel="Off"
-            checked={options.isActive}
-            onChange={() => {
-              dispatch({ type: "toggleActive" });
-            }}
-          />
+          <Group wrap="nowrap" align="center" gap="xs">
+            <Switch
+              size="lg"
+              onLabel="On"
+              offLabel="Off"
+              checked={options.isActive}
+              onChange={() => {
+                dispatch({ type: "toggleActive" });
+              }}
+            />
+            <ThemeSwitcher />
+          </Group>
         </Group>
 
-        <Paper shadow="xs" p="xl">
+        <Paper shadow="xs" p="xl" className={classes.labelListContainer}>
           <LabelList
             labels={options.labels}
             dispatch={dispatch}

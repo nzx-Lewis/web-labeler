@@ -51,7 +51,7 @@ function ConfigurationImport({ dispatch }: ConfigurationImportProps) {
       <FileButton onChange={setFile} accept=".json">
         {(props) => (
           <Button
-            variant="white"
+            variant="default"
             size="xs"
             leftSection={<IconUpload size={16} />}
             {...props}
