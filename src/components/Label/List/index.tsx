@@ -10,8 +10,9 @@ import {
   List,
 } from "@mantine/core";
 import {
+  IconArrowsSort,
   IconEdit,
-  IconInfoCircle,
+  IconGripVertical,
   IconPlus,
   IconTag,
   IconTrash,
@@ -30,6 +31,9 @@ function LabelList({
       <Table verticalSpacing="sm" highlightOnHover>
         <Table.Thead>
           <Table.Tr>
+            <Table.Th>
+              <IconArrowsSort size={14} />
+            </Table.Th>
             <Table.Th>Label Name</Table.Th>
             <Table.Th>Rules</Table.Th>
             <Table.Th>Status</Table.Th>
@@ -39,13 +43,16 @@ function LabelList({
         <Table.Tbody>
           {!labels?.length ? (
             <Table.Tr>
-              <Table.Td colSpan={4} align="center">
+              <Table.Td colSpan={5} align="center">
                 no labels
               </Table.Td>
             </Table.Tr>
           ) : (
             labels.map((label) => (
               <Table.Tr>
+                <Table.Td>
+                  <IconGripVertical size={14} />
+                </Table.Td>
                 <Table.Td>
                   <Badge
                     size="md"
@@ -64,9 +71,6 @@ function LabelList({
                         variant="default"
                         color="gray"
                         radius="xs"
-                        leftSection={
-                          !!label.rules.length && <IconInfoCircle size={14} />
-                        }
                       >
                         {label.rules.length || "-"}
                       </Badge>
