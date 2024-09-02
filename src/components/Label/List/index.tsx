@@ -128,7 +128,7 @@ function LabelList({
                           size: "auto",
                           children: (
                             <ConfirmationModal
-                              message={`Are you sure you want to delete the label ${!!label.name && `"${label.name}"`}?`}
+                              message={`Are you sure you want to delete the label "${label.name || "[noname]"}"?`}
                               onConfirm={() => {
                                 dispatch({
                                   type: "deleteLabel",
