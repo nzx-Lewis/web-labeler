@@ -18,6 +18,7 @@ import {
 } from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
 import LabelEditForm from "../EditForm";
+import ConfirmationModal from "../../ConfirmationModal";
 
 function LabelList({
   labels,
@@ -122,9 +123,22 @@ function LabelList({
                       variant="light"
                       leftSection={<IconTrash size={14} />}
                       onClick={() => {
-                        dispatch({
-                          type: "deleteLabel",
-                          payload: { id: label.id },
+                        modals.open({
+                          title: "Delete Label",
+                          size: "auto",
+                          children: (
+                            <ConfirmationModal
+                              message={`Are you sure you want to delete the label ${!!label.name && `"${label.name}"`}?`}
+                              onConfirm={() => {
+                                dispatch({
+                                  type: "deleteLabel",
+                                  payload: { id: label.id },
+                                });
+                                modals.closeAll();
+                              }}
+                              onClose={() => modals.closeAll()}
+                            />
+                          ),
                         });
                       }}
                     >
@@ -165,7 +179,20 @@ function LabelList({
             color="dark"
             leftSection={<IconTrash size={14} />}
             onClick={() => {
-              dispatch({ type: "deleteAllLabels" });
+              modals.open({
+                title: "Delete All Labels",
+                size: "auto",
+                children: (
+                  <ConfirmationModal
+                    message={`Are you sure you want to delete all labels?`}
+                    onConfirm={() => {
+                      dispatch({ type: "deleteAllLabels" });
+                      modals.closeAll();
+                    }}
+                    onClose={() => modals.closeAll()}
+                  />
+                ),
+              });
             }}
           >
             Delete All
