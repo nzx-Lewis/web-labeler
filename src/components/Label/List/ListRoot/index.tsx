@@ -3,6 +3,7 @@ import { Table, Stack } from "@mantine/core";
 import { IconArrowsSort } from "@tabler/icons-react";
 import LabelListActions from "../ListActions";
 import LabelListItem from "../Item";
+import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
 function LabelList({
   labels,
@@ -11,36 +12,57 @@ function LabelList({
 }: LabelListProps) {
   return (
     <Stack>
-      <Table verticalSpacing="sm" highlightOnHover>
-        <Table.Thead>
-          <Table.Tr>
-            <Table.Th>
-              <IconArrowsSort size={14} />
-            </Table.Th>
-            <Table.Th>Label Name</Table.Th>
-            <Table.Th>Rules</Table.Th>
-            <Table.Th>Status</Table.Th>
-            <Table.Th>Actions</Table.Th>
-          </Table.Tr>
-        </Table.Thead>
-        <Table.Tbody>
-          {!labels?.length ? (
+      <DragDropContext
+        onDragEnd={({ destination, source }) => {
+          if (destination?.index !== undefined) {
+            dispatch({
+              type: "reorderLabels",
+              payload: {
+                sourceIndex: source.index,
+                destinationIndex: destination.index,
+              },
+            });
+          }
+        }}
+      >
+        <Table verticalSpacing="sm" highlightOnHover>
+          <Table.Thead>
             <Table.Tr>
-              <Table.Td colSpan={5} align="center">
-                no labels
-              </Table.Td>
+              <Table.Th>
+                <IconArrowsSort size={14} />
+              </Table.Th>
+              <Table.Th>Label Name</Table.Th>
+              <Table.Th>Rules</Table.Th>
+              <Table.Th>Status</Table.Th>
+              <Table.Th>Actions</Table.Th>
             </Table.Tr>
-          ) : (
-            labels.map((label) => (
-              <LabelListItem
-                dispatch={dispatch}
-                label={label}
-                isStatusSwitchDisabled={isStatusSwitchDisabled}
-              />
-            ))
-          )}
-        </Table.Tbody>
-      </Table>
+          </Table.Thead>
+          <Droppable droppableId="label-list" direction="vertical">
+            {(provided) => (
+              <Table.Tbody {...provided.droppableProps} ref={provided.innerRef}>
+                {!labels?.length ? (
+                  <Table.Tr>
+                    <Table.Td colSpan={5} align="center">
+                      no labels
+                    </Table.Td>
+                  </Table.Tr>
+                ) : (
+                  labels.map((label, index) => (
+                    <LabelListItem
+                      key={label.id}
+                      dispatch={dispatch}
+                      label={label}
+                      index={index}
+                      isStatusSwitchDisabled={isStatusSwitchDisabled}
+                    />
+                  ))
+                )}
+                {provided.placeholder}
+              </Table.Tbody>
+            )}
+          </Droppable>
+        </Table>
+      </DragDropContext>
       <LabelListActions
         dispatch={dispatch}
         isDeleteAllDisabled={labels.length <= 1}

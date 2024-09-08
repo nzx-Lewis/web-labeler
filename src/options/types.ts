@@ -40,6 +40,13 @@ export type OptionsAction =
       payload: Pick<Label, "id">;
     }
   | {
+      type: "reorderLabels";
+      payload: {
+        sourceIndex: number;
+        destinationIndex: number;
+      };
+    }
+  | {
       type: "toggleActive";
       payload?: { force: true };
     }

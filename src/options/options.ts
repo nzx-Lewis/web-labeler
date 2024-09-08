@@ -42,6 +42,18 @@ export const optionsReducer = (options: Options, action: OptionsAction) => {
         ...options,
         labels: [],
       };
+    case "reorderLabels": {
+      const labels = [...options.labels];
+      labels.splice(
+        action.payload.destinationIndex,
+        0,
+        labels.splice(action.payload.sourceIndex, 1)[0],
+      );
+      return {
+        ...options,
+        labels,
+      };
+    }
     case "toggleActive":
       return {
         ...options,

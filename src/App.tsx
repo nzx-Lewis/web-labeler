@@ -18,7 +18,7 @@ import "./style.scss";
 // 6. Import setting from url
 // 6.1 By user action (sync button)
 // 6.2 By timer (autoupdate)
-// 7. Draggable labels in the list
+// ☑️ 7. Draggable labels in the list
 // 8. UI improvements:
 // 8.1 user friendly position selector in the edit form,
 // 8.2 ribbon/triangle icons for labels in the edit form and in the labels' badges
