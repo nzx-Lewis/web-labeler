@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Environment Label",
+  "name": "WebLabeler",
   "description": "Label your projects easily and avoid confusing production with test or development environments",
   "version": "0.1",
   "icons": {
