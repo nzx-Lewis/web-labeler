@@ -3,9 +3,11 @@ import { IconFileImport } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
 import validate from "../../../../utils/schemaValidator";
 import { validationSchema } from "../../../../options/validationSchema.ts";
-import { ConfigurationImportProps } from "./types.ts";
+import { ConfigurationImportFromFilesProps } from "./types.ts";
 
-function ConfigurationImportFromFile({ dispatch }: ConfigurationImportProps) {
+function ConfigurationImportFromFile({
+  dispatch,
+}: ConfigurationImportFromFilesProps) {
   const [file, setFile] = useState<File | null>(null);
 
   useEffect(() => {

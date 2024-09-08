@@ -2,7 +2,7 @@ import { Button } from "@mantine/core";
 import { IconUpload } from "@tabler/icons-react";
 import { ConfigurationImportProps } from "./types.ts";
 import { modals } from "@mantine/modals";
-import ConfigurationImportFromFile from "../FromFile";
+import ConfigurationImportTabs from "../Tabs";
 
 function ConfigurationImport({ dispatch }: ConfigurationImportProps) {
   return (
@@ -14,7 +14,7 @@ function ConfigurationImport({ dispatch }: ConfigurationImportProps) {
         onClick={() => {
           modals.open({
             title: "Import Labels",
-            children: <ConfigurationImportFromFile dispatch={dispatch} />,
+            children: <ConfigurationImportTabs dispatch={dispatch} />,
           });
         }}
       >

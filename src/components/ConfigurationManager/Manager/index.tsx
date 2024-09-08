@@ -1,5 +1,5 @@
 import { Group } from "@mantine/core";
-import ConfigurationImport from "../Import/Root";
+import ConfigurationImport from "../Import";
 import ConfigurationExport from "../Export";
 import { ConfigurationManagerProps } from "./types.ts";
 
