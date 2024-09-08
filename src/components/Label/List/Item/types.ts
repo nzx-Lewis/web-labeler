@@ -6,5 +6,5 @@ export interface LabelListItemProps {
   dispatch: Dispatch<OptionsAction>;
   label: Label;
   index: number;
-  isStatusSwitchDisabled?: boolean;
+  isAllActive?: boolean;
 }

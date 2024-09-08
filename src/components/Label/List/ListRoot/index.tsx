@@ -5,11 +5,7 @@ import LabelListActions from "../ListActions";
 import LabelListItem from "../Item";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
 
-function LabelList({
-  labels,
-  dispatch,
-  isStatusSwitchDisabled,
-}: LabelListProps) {
+function LabelList({ labels, dispatch, isAllActive }: LabelListProps) {
   return (
     <Stack>
       <DragDropContext
@@ -53,7 +49,7 @@ function LabelList({
                       dispatch={dispatch}
                       label={label}
                       index={index}
-                      isStatusSwitchDisabled={isStatusSwitchDisabled}
+                      isAllActive={isAllActive}
                     />
                   ))
                 )}

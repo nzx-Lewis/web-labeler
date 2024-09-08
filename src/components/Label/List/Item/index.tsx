@@ -8,7 +8,7 @@ function LabelListItem({
   dispatch,
   label,
   index,
-  isStatusSwitchDisabled,
+  isAllActive,
 }: LabelListItemProps) {
   return (
     <Draggable key={label.id} index={index} draggableId={label.id}>
@@ -51,7 +51,7 @@ function LabelListItem({
           </Table.Td>
           <Table.Td>
             <Switch
-              disabled={isStatusSwitchDisabled}
+              disabled={!isAllActive}
               checked={label.isActive}
               onChange={() => {
                 dispatch({

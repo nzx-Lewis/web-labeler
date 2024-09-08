@@ -42,7 +42,7 @@ function OptionsPage({ options, dispatch }: OptionsPageProps) {
           <LabelList
             labels={options.labels}
             dispatch={dispatch}
-            isStatusSwitchDisabled={!options.isActive}
+            isAllActive={options.isActive}
           />
         </Paper>
 

@@ -23,7 +23,7 @@ import "./style.scss";
 // 8.1 user friendly position selector in the edit form,
 // 8.2 ribbon/triangle icons for labels in the edit form and in the labels' badges
 // ☑️ 8.3 confirmation dialog on delete label and delete all actions
-// 8.4 add on/off control for each label into the popup
+// ☑️ 8.4 add on/off control for each label into the popup
 // 8.5 fix mobile version UI issues
 // 9. Support regexp or special symbols like *
 // ☑️ 10. Dark mode
@@ -51,7 +51,7 @@ function App() {
       <ModalsProvider>
         {isReady &&
           (window.location.hash === "#popup" ? (
-            <Popup isActive={options.isActive} dispatch={dispatch} />
+            <Popup options={options} dispatch={dispatch} />
           ) : (
             <OptionsPage options={options} dispatch={dispatch} />
           ))}
