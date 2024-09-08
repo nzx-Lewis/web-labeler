@@ -1,5 +1,5 @@
 import { Button, Group } from "@mantine/core";
-import { IconPlus, IconTrash } from "@tabler/icons-react";
+import { IconSquareRoundedPlus, IconTrash } from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
 import LabelEditForm from "../../EditForm";
 import ConfirmationModal from "../../../ConfirmationModal";
@@ -14,7 +14,7 @@ function LabelListActions({
       <Button
         size="xs"
         variant="light"
-        leftSection={<IconPlus size={14} />}
+        leftSection={<IconSquareRoundedPlus size={16} />}
         onClick={() => {
           modals.open({
             title: "New Label",
@@ -34,7 +34,6 @@ function LabelListActions({
         <Button
           size="xs"
           variant="light"
-          color="dark"
           leftSection={<IconTrash size={14} />}
           onClick={() => {
             modals.open({

@@ -1,4 +1,4 @@
-import ConfigurationImport from "./Import";
+import ConfigurationImport from "./Import/Root";
 import ConfigurationExport from "./Export";
 import ConfigurationManager from "./Manager";
 

@@ -1,11 +1,11 @@
 import { Button, FileButton } from "@mantine/core";
-import { IconUpload } from "@tabler/icons-react";
+import { IconFileImport } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import validate from "../../../utils/schemaValidator";
-import { validationSchema } from "../../../options/validationSchema.ts";
+import validate from "../../../../utils/schemaValidator";
+import { validationSchema } from "../../../../options/validationSchema.ts";
 import { ConfigurationImportProps } from "./types.ts";
 
-function ConfigurationImport({ dispatch }: ConfigurationImportProps) {
+function ConfigurationImportFromFile({ dispatch }: ConfigurationImportProps) {
   const [file, setFile] = useState<File | null>(null);
 
   useEffect(() => {
@@ -47,21 +47,19 @@ function ConfigurationImport({ dispatch }: ConfigurationImportProps) {
   }, [file]);
 
   return (
-    <>
-      <FileButton onChange={setFile} accept=".json">
-        {(props) => (
-          <Button
-            variant="default"
-            size="xs"
-            leftSection={<IconUpload size={16} />}
-            {...props}
-          >
-            Import Labels
-          </Button>
-        )}
-      </FileButton>
-    </>
+    <FileButton onChange={setFile} accept=".json">
+      {(props) => (
+        <Button
+          variant="default"
+          size="xs"
+          leftSection={<IconFileImport size={16} />}
+          {...props}
+        >
+          From file
+        </Button>
+      )}
+    </FileButton>
   );
 }
 
-export default ConfigurationImport;
+export default ConfigurationImportFromFile;
