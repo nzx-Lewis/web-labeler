@@ -2,6 +2,7 @@ import { ConfigurationImportTabsProps } from "./types.ts";
 import { Tabs } from "@mantine/core";
 import { IconFileImport, IconWorldUpload } from "@tabler/icons-react";
 import ConfigurationImportFromFile from "../FromFile";
+import ConfigurationImportFromUrl from "../FromUrl";
 
 function ConfigurationImportTabs({ dispatch }: ConfigurationImportTabsProps) {
   return (
@@ -19,7 +20,9 @@ function ConfigurationImportTabs({ dispatch }: ConfigurationImportTabsProps) {
         <ConfigurationImportFromFile dispatch={dispatch} />
       </Tabs.Panel>
 
-      <Tabs.Panel value="fromUrl">Will be soon...</Tabs.Panel>
+      <Tabs.Panel value="fromUrl">
+        <ConfigurationImportFromUrl />
+      </Tabs.Panel>
     </Tabs>
   );
 }

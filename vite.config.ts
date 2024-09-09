@@ -8,6 +8,7 @@ export default defineConfig({
       input: {
         index: "./index.html",
         contentScript: "./src/contentScript/index.ts",
+        serviceWorker: "./src/serviceWorker/index.ts",
       },
       output: {
         //TODO: replace non-hashed-filenames with creating manifest.json
