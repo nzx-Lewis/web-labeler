@@ -1,6 +1,11 @@
+import axios from "axios";
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "importFromUrl") {
-    console.log(message, sender);
-    sendResponse({ response: { message, sender } });
+    axios.get(message.url).then((response) => {
+      console.log(response);
+      sendResponse({ response: { message, sender } });
+    });
   }
+  return true;
 });
