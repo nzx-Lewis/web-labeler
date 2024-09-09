@@ -27,6 +27,9 @@ import "./style.scss";
 // 8.5 fix mobile version UI issues
 // 9. Support regexp or special symbols like *
 // ☑️ 10. Dark mode
+// 11. Tooltip features:
+// 11.1 UI control for switching between label positions
+// 11.2 Quick add active tab url to specific label rule
 
 function App() {
   const {
