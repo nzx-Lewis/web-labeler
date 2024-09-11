@@ -7,6 +7,7 @@ import { usePersistentReducer } from "./hooks/usePersistedReducer";
 import { Options, OptionsAction } from "./options/types.ts";
 import defaultLabels from "./options/defaulLabels.ts";
 import "@mantine/core/styles.css";
+import "@mantine/dropzone/styles.css";
 import "./style.scss";
 
 //TODO:

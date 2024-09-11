@@ -1,5 +1,6 @@
-import { Button, FileButton } from "@mantine/core";
-import { IconFileImport } from "@tabler/icons-react";
+import { Text, Stack, Group } from "@mantine/core";
+import { IconUpload, IconX, IconFileCode } from "@tabler/icons-react";
+import { Dropzone } from "@mantine/dropzone";
 import { useEffect, useState } from "react";
 import validate from "../../../../utils/schemaValidator";
 import { validationSchema } from "../../../../options/validationSchema.ts";
@@ -49,18 +50,36 @@ function ConfigurationImportFromFile({
   }, [file]);
 
   return (
-    <FileButton onChange={setFile} accept=".json">
-      {(props) => (
-        <Button
-          variant="default"
-          size="xs"
-          leftSection={<IconFileImport size={16} />}
-          {...props}
-        >
-          From file
-        </Button>
-      )}
-    </FileButton>
+    <Dropzone
+      onDrop={(file) => {
+        setFile(file[0]);
+      }}
+      accept={["application/json"]}
+      multiple={false}
+    >
+      <Group
+        gap="md"
+        justify="center"
+        wrap="nowrap"
+        style={{ pointerEvents: "none" }}
+      >
+        <Dropzone.Accept>
+          <IconUpload size={44} />
+        </Dropzone.Accept>
+        <Dropzone.Reject>
+          <IconX size={44} />
+        </Dropzone.Reject>
+        <Dropzone.Idle>
+          <IconFileCode size={44} />
+        </Dropzone.Idle>
+        <Stack gap={0}>
+          <Text size="l">Drag file here or click to select</Text>
+          <Text size="xs" c="dimmed">
+            Use exported configuration file in JSON format
+          </Text>
+        </Stack>
+      </Group>
+    </Dropzone>
   );
 }
 
