@@ -1,5 +1,7 @@
+import { ReactNode } from "react";
+
 export interface ConfirmationModalProps {
-  message?: string;
+  message?: string | ReactNode;
   onConfirm: () => void;
   onClose: () => void;
 }

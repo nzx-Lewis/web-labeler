@@ -4,7 +4,7 @@ import { ConfigurationImportProps } from "./types.ts";
 import { modals } from "@mantine/modals";
 import ConfigurationImportTabs from "../Tabs";
 
-function ConfigurationImport({ dispatch }: ConfigurationImportProps) {
+function ConfigurationImport({ dispatch, labels }: ConfigurationImportProps) {
   return (
     <>
       <Button
@@ -14,7 +14,9 @@ function ConfigurationImport({ dispatch }: ConfigurationImportProps) {
         onClick={() => {
           modals.open({
             title: "Import Labels",
-            children: <ConfigurationImportTabs dispatch={dispatch} />,
+            children: (
+              <ConfigurationImportTabs labels={labels} dispatch={dispatch} />
+            ),
           });
         }}
       >

@@ -4,7 +4,10 @@ import { IconFileImport, IconWorldUpload } from "@tabler/icons-react";
 import ConfigurationImportFromFile from "../FromFile";
 import ConfigurationImportFromUrl from "../FromUrl";
 
-function ConfigurationImportTabs({ dispatch }: ConfigurationImportTabsProps) {
+function ConfigurationImportTabs({
+  dispatch,
+  labels,
+}: ConfigurationImportTabsProps) {
   return (
     <Tabs defaultValue="fromFile">
       <Tabs.List mb={20}>
@@ -17,7 +20,7 @@ function ConfigurationImportTabs({ dispatch }: ConfigurationImportTabsProps) {
       </Tabs.List>
 
       <Tabs.Panel value="fromFile">
-        <ConfigurationImportFromFile dispatch={dispatch} />
+        <ConfigurationImportFromFile labels={labels} dispatch={dispatch} />
       </Tabs.Panel>
 
       <Tabs.Panel value="fromUrl">

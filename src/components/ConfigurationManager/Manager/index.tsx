@@ -7,7 +7,7 @@ function ConfigurationManager({ labels, dispatch }: ConfigurationManagerProps) {
   return (
     <Group>
       <ConfigurationExport labels={labels} />
-      <ConfigurationImport dispatch={dispatch} />
+      <ConfigurationImport labels={labels} dispatch={dispatch} />
     </Group>
   );
 }
