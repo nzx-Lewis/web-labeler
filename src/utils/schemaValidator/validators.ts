@@ -5,8 +5,8 @@ export const validate: SchemaValidator<Record<string, unknown>> = (
   schema,
 ) => {
   const messages = Object.entries(item)
-    .filter(([key, value]) => !schema[key](value))
-    .map(([key]) => `'${key}' property has invalid value`);
+    .filter(([key, value]) => (schema?.[key] ? !schema[key](value) : true))
+    .map(([key]) => `'${key}' property is invalid`);
 
   return {
     result: !messages.length,
