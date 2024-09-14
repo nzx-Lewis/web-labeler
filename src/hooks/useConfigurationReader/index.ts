@@ -27,7 +27,6 @@ export const useConfigurationFileReader: UseConfigurationFileReader = () => {
                 );
                 if (!isValid) {
                   throw new Error(messages?.join("; "));
-                  break;
                 }
               }
             } else {

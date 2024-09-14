@@ -49,8 +49,8 @@ function ConfigurationImportFromFile({
             }
             onConfirm={() => {
               dispatch({
-                type: "initialize",
-                payload: { isActive: true, labels: labelsForImport },
+                type: "mergeLabels",
+                payload: { labels: labelsForImport },
               });
               modals.closeAll();
             }}

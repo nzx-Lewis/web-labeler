@@ -1,4 +1,4 @@
-import { Options, OptionsAction } from "./types.ts";
+import { Label, Options, OptionsAction } from "./types.ts";
 import { v4 as uuidv4 } from "uuid";
 
 export const optionsReducer = (options: Options, action: OptionsAction) => {
@@ -49,6 +49,23 @@ export const optionsReducer = (options: Options, action: OptionsAction) => {
         0,
         labels.splice(action.payload.sourceIndex, 1)[0],
       );
+      return {
+        ...options,
+        labels,
+      };
+    }
+    case "mergeLabels": {
+      const labels = [...options.labels];
+      action.payload.labels.forEach((importingLabel) => {
+        const indexToUpdate = options.labels.findIndex(
+          (label) => label.id === importingLabel?.id,
+        );
+        if (indexToUpdate !== -1) {
+          labels[indexToUpdate] = importingLabel as Label;
+        } else {
+          labels.push({ ...importingLabel, id: uuidv4() });
+        }
+      });
       return {
         ...options,
         labels,

@@ -47,6 +47,10 @@ export type OptionsAction =
       };
     }
   | {
+      type: "mergeLabels";
+      payload: { labels: (Omit<Label, "id"> & Partial<Pick<Label, "id">>)[] };
+    }
+  | {
       type: "toggleActive";
       payload?: { force: true };
     }
