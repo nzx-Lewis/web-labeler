@@ -57,13 +57,16 @@ export const optionsReducer = (options: Options, action: OptionsAction) => {
     case "mergeLabels": {
       const labels = [...options.labels];
       action.payload.labels.forEach((importingLabel) => {
-        const indexToUpdate = options.labels.findIndex(
+        const indexToUpdate = labels.findIndex(
           (label) => label.id === importingLabel?.id,
         );
         if (indexToUpdate !== -1) {
           labels[indexToUpdate] = importingLabel as Label;
         } else {
-          labels.push({ ...importingLabel, id: uuidv4() });
+          labels.push({
+            ...importingLabel,
+            id: importingLabel?.id || uuidv4(),
+          });
         }
       });
       return {
