@@ -4,8 +4,11 @@ import { modals } from "@mantine/modals";
 import LabelEditForm from "../../EditForm";
 import ConfirmationModal from "../../../ConfirmationModal";
 import { LabelListItemActionsProps } from "./types.ts";
+import { useOptionsContext } from "../../../../hooks/useOptionsContext";
 
-function LabelListItemActions({ dispatch, label }: LabelListItemActionsProps) {
+function LabelListItemActions({ label }: LabelListItemActionsProps) {
+  const { dispatch } = useOptionsContext();
+
   return (
     <Group gap="xs">
       <Button
@@ -17,11 +20,7 @@ function LabelListItemActions({ dispatch, label }: LabelListItemActionsProps) {
             title: "Edit label",
             size: "auto",
             children: (
-              <LabelEditForm
-                label={label}
-                dispatch={dispatch}
-                onSave={() => modals.closeAll()}
-              />
+              <LabelEditForm label={label} onSave={() => modals.closeAll()} />
             ),
           });
         }}

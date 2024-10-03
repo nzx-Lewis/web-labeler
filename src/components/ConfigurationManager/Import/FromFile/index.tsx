@@ -16,6 +16,7 @@ function ConfigurationImportFromFile({
 
   const onFileDrop = async (files: FileWithPath[]) => {
     const labelsForImport = await readAndValidate(files[0]);
+
     if (labelsForImport) {
       const updatingLabelCount = labelsForImport.filter(
         (labelForImport) =>

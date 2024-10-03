@@ -7,13 +7,15 @@ import {
   Group,
   Image,
 } from "@mantine/core";
-import { OptionsPageProps } from "./types.ts";
 import LabelList from "../../components/Label";
 import ConfigurationManager from "../../components/ConfigurationManager";
 import ThemeSwitcher from "../../components/ThemeSwitcher";
 import classes from "./style.module.scss";
+import { useOptionsContext } from "../../hooks/useOptionsContext";
 
-function OptionsPage({ options, dispatch }: OptionsPageProps) {
+function OptionsPage() {
+  const { options, dispatch } = useOptionsContext();
+
   return (
     <Container p={20}>
       <Stack>
@@ -39,11 +41,7 @@ function OptionsPage({ options, dispatch }: OptionsPageProps) {
         </Group>
 
         <Paper shadow="xs" p="xl" className={classes.labelListContainer}>
-          <LabelList
-            labels={options.labels}
-            dispatch={dispatch}
-            isAllActive={options.isActive}
-          />
+          <LabelList />
         </Paper>
 
         <ConfigurationManager labels={options.labels} dispatch={dispatch} />

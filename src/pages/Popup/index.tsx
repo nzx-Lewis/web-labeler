@@ -7,11 +7,13 @@ import {
   Switch,
   Title,
 } from "@mantine/core";
-import { PopupProps } from "./types.ts";
 import { IconSettings } from "@tabler/icons-react";
 import { LabelListCompact } from "../../components/Label/List";
+import { useOptionsContext } from "../../hooks/useOptionsContext";
 
-function Popup({ options, dispatch }: PopupProps) {
+function Popup() {
+  const { options, dispatch } = useOptionsContext();
+
   return (
     <Container p={15}>
       <Stack gap="xl">
@@ -35,11 +37,7 @@ function Popup({ options, dispatch }: PopupProps) {
           </Group>
         </Group>
 
-        <LabelListCompact
-          labels={options.labels}
-          dispatch={dispatch}
-          isAllActive={options.isActive}
-        />
+        <LabelListCompact />
         <Group gap="xs">
           <Button
             size="xs"
@@ -50,7 +48,7 @@ function Popup({ options, dispatch }: PopupProps) {
               chrome.runtime.openOptionsPage();
             }}
           >
-            Manage All Labels
+            Manage Labels
           </Button>
         </Group>
       </Stack>

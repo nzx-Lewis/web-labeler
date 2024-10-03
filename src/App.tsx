@@ -2,13 +2,10 @@ import { MantineProvider } from "@mantine/core";
 import { ModalsProvider } from "@mantine/modals";
 import Popup from "./pages/Popup";
 import OptionsPage from "./pages/OptionsPage";
-import { optionsReducer } from "./options/options.ts";
-import { usePersistentReducer } from "./hooks/usePersistedReducer";
-import { Options, OptionsAction } from "./options/types.ts";
-import defaultLabels from "./options/defaulLabels.ts";
 import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
 import "./style.scss";
+import { OptionsProvider } from "./options/context.tsx";
 
 //TODO:
 // ☑️ 1. Opacity and isActive props for Labels
@@ -33,33 +30,13 @@ import "./style.scss";
 // 11.2 Quick add active tab url to specific label rule
 
 function App() {
-  const {
-    state: options,
-    isInitialized: isReady,
-    dispatch,
-  } = usePersistentReducer<Options, OptionsAction>(
-    optionsReducer,
-    {
-      labels: [],
-      isActive: false,
-    },
-    {
-      isActive: true,
-      labels: defaultLabels,
-    },
-    "options",
-  );
-
   return (
     <MantineProvider defaultColorScheme="auto">
-      <ModalsProvider>
-        {isReady &&
-          (window.location.hash === "#popup" ? (
-            <Popup options={options} dispatch={dispatch} />
-          ) : (
-            <OptionsPage options={options} dispatch={dispatch} />
-          ))}
-      </ModalsProvider>
+      <OptionsProvider>
+        <ModalsProvider>
+          {window.location.hash === "#popup" ? <Popup /> : <OptionsPage />}
+        </ModalsProvider>
+      </OptionsProvider>
     </MantineProvider>
   );
 }

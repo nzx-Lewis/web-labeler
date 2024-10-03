@@ -1,10 +1,8 @@
-import { Label, OptionsAction } from "../../../options/types.ts";
-import { Dispatch } from "react";
+import { Label } from "../../../options/types.ts";
 
 export interface LabelEditFormProps {
   onSave?: () => void;
   label?: Label;
-  dispatch: Dispatch<OptionsAction>;
 }
 
 export type LabelEditFormValues = Omit<Label, "id" | "isActive">;

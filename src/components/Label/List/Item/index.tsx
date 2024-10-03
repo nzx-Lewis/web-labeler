@@ -3,13 +3,11 @@ import { IconGripVertical, IconTag } from "@tabler/icons-react";
 import { LabelListItemProps } from "./types.ts";
 import LabelListItemActions from "../ItemActions";
 import { Draggable } from "@hello-pangea/dnd";
+import { useOptionsContext } from "../../../../hooks/useOptionsContext";
 
-function LabelListItem({
-  dispatch,
-  label,
-  index,
-  isAllActive,
-}: LabelListItemProps) {
+function LabelListItem({ label, index, isAllActive }: LabelListItemProps) {
+  const { dispatch } = useOptionsContext();
+
   return (
     <Draggable key={label.id} index={index} draggableId={label.id}>
       {(provided) => (
@@ -62,7 +60,7 @@ function LabelListItem({
             />
           </Table.Td>
           <Table.Td>
-            <LabelListItemActions dispatch={dispatch} label={label} />
+            <LabelListItemActions label={label} />
           </Table.Td>
         </Table.Tr>
       )}

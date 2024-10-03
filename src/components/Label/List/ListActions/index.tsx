@@ -3,12 +3,11 @@ import { IconSquareRoundedPlus, IconTrash } from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
 import LabelEditForm from "../../EditForm";
 import ConfirmationModal from "../../../ConfirmationModal";
-import { LabelListActionsProps } from "./types.ts";
+import { useOptionsContext } from "../../../../hooks/useOptionsContext";
 
-function LabelListActions({
-  dispatch,
-  isDeleteAllDisabled,
-}: LabelListActionsProps) {
+function LabelListActions() {
+  const { options, dispatch } = useOptionsContext();
+
   return (
     <Group gap="xs" mt="10">
       <Button
@@ -19,18 +18,13 @@ function LabelListActions({
           modals.open({
             title: "New Label",
             size: "auto",
-            children: (
-              <LabelEditForm
-                dispatch={dispatch}
-                onSave={() => modals.closeAll()}
-              />
-            ),
+            children: <LabelEditForm onSave={() => modals.closeAll()} />,
           });
         }}
       >
         Add Label
       </Button>
-      {!isDeleteAllDisabled && (
+      {options.labels.length > 1 && (
         <Button
           size="xs"
           variant="light"

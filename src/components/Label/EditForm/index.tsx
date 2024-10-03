@@ -6,9 +6,11 @@ import LabelEditFormAppearance from "./EditFormAppearance";
 import LabelEditFormRules from "./EditFormRules";
 import { useCallback, useEffect } from "react";
 import { editLabelFormInput } from "./formConfig.ts";
+import { useOptionsContext } from "../../../hooks/useOptionsContext";
 
-function LabelEditForm({ label, dispatch, onSave }: LabelEditFormProps) {
+function LabelEditForm({ label, onSave }: LabelEditFormProps) {
   const form = useLabelEditForm(editLabelFormInput);
+  const { dispatch } = useOptionsContext();
 
   useEffect(() => {
     form.initialize({ ...form.values, ...label });

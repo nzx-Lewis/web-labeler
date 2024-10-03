@@ -1,11 +1,13 @@
-import { LabelListProps } from "./types.ts";
 import { Table, Stack } from "@mantine/core";
 import { IconArrowsSort } from "@tabler/icons-react";
 import LabelListActions from "../ListActions";
 import LabelListItem from "../Item";
 import { DragDropContext, Droppable } from "@hello-pangea/dnd";
+import { useOptionsContext } from "../../../../hooks/useOptionsContext";
 
-function LabelList({ labels, dispatch, isAllActive }: LabelListProps) {
+function LabelList() {
+  const { options, dispatch } = useOptionsContext();
+
   return (
     <Stack>
       <DragDropContext
@@ -36,20 +38,19 @@ function LabelList({ labels, dispatch, isAllActive }: LabelListProps) {
           <Droppable droppableId="label-list" direction="vertical">
             {(provided) => (
               <Table.Tbody {...provided.droppableProps} ref={provided.innerRef}>
-                {!labels?.length ? (
+                {!options.labels?.length ? (
                   <Table.Tr>
                     <Table.Td colSpan={5} align="center">
                       no labels
                     </Table.Td>
                   </Table.Tr>
                 ) : (
-                  labels.map((label, index) => (
+                  options.labels.map((label, index) => (
                     <LabelListItem
                       key={label.id}
-                      dispatch={dispatch}
                       label={label}
                       index={index}
-                      isAllActive={isAllActive}
+                      isAllActive={options.isActive}
                     />
                   ))
                 )}
@@ -59,10 +60,7 @@ function LabelList({ labels, dispatch, isAllActive }: LabelListProps) {
           </Droppable>
         </Table>
       </DragDropContext>
-      <LabelListActions
-        dispatch={dispatch}
-        isDeleteAllDisabled={labels.length <= 1}
-      />
+      <LabelListActions />
     </Stack>
   );
 }
