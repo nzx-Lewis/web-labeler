@@ -13,9 +13,6 @@
   "action": {
     "default_popup": "/index.html#popup"
   },
-  "background": {
-    "service_worker": "assets/serviceWorker.js"
-  },
   "content_scripts": [
     {
       "js": ["assets/contentScript.js"],
