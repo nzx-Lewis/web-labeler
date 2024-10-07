@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "WebLabeler",
+  "name": "WebLabeler: Site Environment Marker",
   "description": "Label your projects easily and avoid confusing production with test or development environments",
   "version": "1.0",
   "icons": {

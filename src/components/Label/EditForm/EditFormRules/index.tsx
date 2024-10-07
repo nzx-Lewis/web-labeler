@@ -26,7 +26,7 @@ function LabelEditFormRules() {
               allowDeselect={false}
             />
             <TextInput
-              placeholder="Rule value"
+              placeholder="Domain or part (without protocol)"
               key={form.key(`rules.${index}.value`)}
               {...form.getInputProps(`rules.${index}.value`)}
               style={{ flexGrow: 1 }}
