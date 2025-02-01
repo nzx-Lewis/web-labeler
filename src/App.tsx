@@ -22,12 +22,18 @@ import { OptionsProvider } from "./options/context.tsx";
 // 8.2 ribbon/triangle icons for labels in the edit form and in the labels' badges
 // ☑️ 8.3 confirmation dialog on delete label and delete all actions
 // ☑️ 8.4 add on/off control for each label into the popup
-// 8.5 fix mobile version UI issues
+// 8.5 Split appearance and rules label settings into 2 different dialogs
 // 9. Support regexp or special symbols like *
 // ☑️ 10. Dark mode
 // 11. Tooltip features:
 // 11.1 UI control for switching between label positions
 // 11.2 Quick add active tab url to specific label rule
+// 12. Appearance customization:
+// 12.1 Label and font size customization
+// 12.2 Mouse over transparency
+// 12.3 Multiline name field
+// 13. Rules:
+// 13.1 Apply label by cookie key/value
 
 function App() {
   return (
