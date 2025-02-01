@@ -10,6 +10,10 @@ export interface Label {
   shape: (typeof shapes)[number];
   position: (typeof positions)[number];
   isActive: boolean;
+
+  hoveredOpacity?: number;
+  fontSize?: number;
+  scale?: number;
 }
 
 export interface Rule {

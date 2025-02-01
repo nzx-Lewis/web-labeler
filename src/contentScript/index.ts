@@ -4,14 +4,19 @@ import classes from "./style.module.scss";
 
 class EnvLabel {
   private labelElement: HTMLDivElement | null;
+  private hoverListener: ((event: MouseEvent) => void) | null;
   constructor() {
     this.labelElement = null;
+    this.hoverListener = null;
     this.initialize();
 
     chrome.storage.sync.onChanged.addListener(this.initialize);
   }
   private initialize = async () => {
     this.removeLabelFromDom();
+    if (this.hoverListener) {
+      document.removeEventListener("mousemove", this.hoverListener);
+    }
 
     const { options } = (await chrome.storage.sync.get("options")) as {
       options: Options;
@@ -28,6 +33,10 @@ class EnvLabel {
     const label = this.matchLabel(window.location.hostname, options.labels);
     if (label !== false) {
       this.renderLabel(label);
+      if (label.hoveredOpacity !== undefined) {
+        this.hoverListener = this.hoverHandler(label);
+        document.addEventListener("mousemove", this.hoverListener);
+      }
     }
   };
 
@@ -78,6 +87,16 @@ class EnvLabel {
       "--label-background-color",
       label.bgColor,
     );
+    if (label.fontSize) {
+      this.labelElement.style.setProperty(
+        "--label-font-size",
+        String(label.fontSize),
+      );
+    }
+    if (label.scale) {
+      this.labelElement.style.setProperty("--label-scale", String(label.scale));
+    }
+
     document.body.appendChild(this.labelElement);
   };
 
@@ -87,6 +106,24 @@ class EnvLabel {
       this.labelElement = null;
     }
   }
+
+  private hoverHandler = (label: Label) => (event: MouseEvent) => {
+    if (!this.labelElement) {
+      return;
+    }
+    const { left, top, width, height } =
+      this.labelElement.getBoundingClientRect();
+
+    const isHovering =
+      event.clientX >= left &&
+      event.clientX <= left + width &&
+      event.clientY >= top &&
+      event.clientY <= top + height;
+
+    this.labelElement.style.opacity = isHovering
+      ? String(label.hoveredOpacity)
+      : String(label.opacity);
+  };
 }
 
 new EnvLabel();

@@ -1,7 +1,7 @@
 {
   "name": "WebLabeler",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -39,6 +39,6 @@
     "prettier": "^3.3.3",
     "sass": "^1.77.8",
     "typescript": "^5.2.2",
-    "vite": "^5.3.4"
+    "vite": "6.0.9"
   }
 }
