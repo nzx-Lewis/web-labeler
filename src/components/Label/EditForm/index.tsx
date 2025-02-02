@@ -1,5 +1,9 @@
 import { Button } from "@mantine/core";
-import { LabelEditFormProps, LabelEditFormValues } from "./types.ts";
+import {
+  LabelEditFormProps,
+  LabelEditFormSection,
+  LabelEditFormValues,
+} from "./types.ts";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 import { useLabelEditForm, LabelEditFormProvider } from "./formContext.ts";
 import LabelEditFormAppearance from "./EditFormAppearance";
@@ -8,8 +12,9 @@ import { useCallback, useEffect } from "react";
 import { editLabelFormInput } from "./formConfig.ts";
 import { useOptionsContext } from "../../../hooks/useOptionsContext";
 
-function LabelEditForm({ label, onSave }: LabelEditFormProps) {
-  const form = useLabelEditForm(editLabelFormInput);
+function LabelEditForm({ label, onSave, section }: LabelEditFormProps) {
+  const isNew = !label?.rules.length;
+  const form = useLabelEditForm(editLabelFormInput(isNew));
   const { dispatch } = useOptionsContext();
 
   useEffect(() => {
@@ -41,11 +46,13 @@ function LabelEditForm({ label, onSave }: LabelEditFormProps) {
   return (
     <LabelEditFormProvider form={form}>
       <form onSubmit={form.onSubmit(onFormSubmitHandler)}>
-        <LabelEditFormAppearance />
-        <LabelEditFormRules />
+        {section == LabelEditFormSection.Appearance && (
+          <LabelEditFormAppearance />
+        )}
+        {section === LabelEditFormSection.Rules && <LabelEditFormRules />}
         <Button
-          type="submit"
           mt="md"
+          type="submit"
           leftSection={<IconDeviceFloppy size={14} />}
         >
           Save

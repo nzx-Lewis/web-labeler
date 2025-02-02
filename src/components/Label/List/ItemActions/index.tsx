@@ -1,10 +1,11 @@
 import { Button, Group } from "@mantine/core";
-import { IconEdit, IconTrash } from "@tabler/icons-react";
+import { IconResize, IconTextGrammar, IconTrash } from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
 import LabelEditForm from "../../EditForm";
 import ConfirmationModal from "../../../ConfirmationModal";
 import { LabelListItemActionsProps } from "./types.ts";
 import { useOptionsContext } from "../../../../hooks/useOptionsContext";
+import { LabelEditFormSection } from "../../EditForm/types.ts";
 
 function LabelListItemActions({ label }: LabelListItemActionsProps) {
   const { dispatch } = useOptionsContext();
@@ -14,18 +15,42 @@ function LabelListItemActions({ label }: LabelListItemActionsProps) {
       <Button
         size="xs"
         variant="light"
-        leftSection={<IconEdit size={14} />}
+        leftSection={<IconResize size={14} />}
         onClick={() => {
           modals.open({
-            title: "Edit label",
-            size: "auto",
+            title: "Edit Label Appearance",
+            size: "lg",
             children: (
-              <LabelEditForm label={label} onSave={() => modals.closeAll()} />
+              <LabelEditForm
+                label={label}
+                section={LabelEditFormSection.Appearance}
+                onSave={() => modals.closeAll()}
+              />
             ),
           });
         }}
       >
-        Edit
+        Appearance
+      </Button>
+      <Button
+        size="xs"
+        variant="light"
+        leftSection={<IconTextGrammar size={14} />}
+        onClick={() => {
+          modals.open({
+            title: "Edit Label Rules",
+            size: "lg",
+            children: (
+              <LabelEditForm
+                label={label}
+                section={LabelEditFormSection.Rules}
+                onSave={() => modals.closeAll()}
+              />
+            ),
+          });
+        }}
+      >
+        Rules
       </Button>
       <Button
         size="xs"
@@ -34,7 +59,7 @@ function LabelListItemActions({ label }: LabelListItemActionsProps) {
         onClick={() => {
           modals.open({
             title: "Delete Label",
-            size: "auto",
+            size: "lg",
             children: (
               <ConfirmationModal
                 message={`Are you sure you want to delete the label "${label.name || "[noname]"}"?`}

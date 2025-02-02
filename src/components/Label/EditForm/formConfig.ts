@@ -7,7 +7,9 @@ import {
 import { UseFormInput } from "@mantine/form";
 import { LabelEditFormValues } from "./types.ts";
 
-export const editLabelFormInput: UseFormInput<LabelEditFormValues> = {
+export const editLabelFormInput = (
+  isNew: boolean,
+): UseFormInput<LabelEditFormValues> => ({
   initialValues: {
     name: "",
     bgColor: colorSwatches[0],
@@ -15,7 +17,7 @@ export const editLabelFormInput: UseFormInput<LabelEditFormValues> = {
     opacity: 0.75,
     shape: shapes[0],
     position: positions[0],
-    rules: [{ type: ruleTypes[0], value: "" }],
+    rules: isNew ? [] : [{ type: ruleTypes[0], value: "" }],
   },
   enhanceGetInputProps: (payload) => ({
     disabled:
@@ -28,4 +30,4 @@ export const editLabelFormInput: UseFormInput<LabelEditFormValues> = {
         !value.trim().length ? "The rule value can't be empty" : null,
     },
   },
-};
+});
