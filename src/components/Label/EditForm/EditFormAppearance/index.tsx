@@ -51,7 +51,7 @@ function LabelEditFormAppearance() {
             />
           </Group>
 
-          <Group grow>
+          <Group gap="xs" grow>
             <Input.Wrapper label="Opacity">
               <Slider
                 color="gray"
@@ -76,7 +76,7 @@ function LabelEditFormAppearance() {
             </Input.Wrapper>
           </Group>
 
-          <Group grow>
+          <Group gap="xs" grow>
             <Input.Wrapper label="Scale">
               <Slider
                 color="gray"
