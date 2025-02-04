@@ -19,4 +19,7 @@ export const validationSchema: Schema<Label> = {
     ).length === val.length,
   opacity: (val) => typeof val === "number" && val > 0 && val < 1,
   isActive: (val) => typeof val === "boolean",
+  hoveredOpacity: (val) => typeof val === "number" && val >= 0 && val < 1,
+  fontSize: (val) => typeof val === "number" && val >= 10 && val <= 30,
+  scale: (val) => typeof val === "number" && val >= 0.5 && val <= 2,
 };
