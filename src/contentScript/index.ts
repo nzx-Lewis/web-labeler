@@ -34,7 +34,7 @@ class EnvLabel {
     if (label !== false) {
       this.renderLabel(label);
       if (label.hoveredOpacity !== undefined) {
-        this.hoverListener = this.hoverHandler(label);
+        this.hoverListener = this.hoverHandler;
         document.addEventListener("mousemove", this.hoverListener);
       }
     }
@@ -77,7 +77,9 @@ class EnvLabel {
     this.labelElement.className = classes.label;
     this.labelElement.classList.add(classes?.[label.shape]);
     this.labelElement.classList.add(classes?.[label.position]);
-    this.labelElement.innerHTML = label.shape === "frame" ? "" : label.name;
+    this.labelElement.innerHTML =
+      label.shape === "frame" ? "" : label.name.replace(/\r\n|\r|\n/g, "<br>");
+
     this.labelElement.style.setProperty("--label-text-color", label.textColor);
     this.labelElement.style.setProperty(
       "--label-opacity",
@@ -87,10 +89,16 @@ class EnvLabel {
       "--label-background-color",
       label.bgColor,
     );
+    if (label.hoveredOpacity !== undefined) {
+      this.labelElement.style.setProperty(
+        "--label-hovered-opacity",
+        String(label.hoveredOpacity),
+      );
+    }
     if (label.fontSize) {
       this.labelElement.style.setProperty(
         "--label-font-size",
-        String(label.fontSize),
+        String(label.fontSize) + "px",
       );
     }
     if (label.scale) {
@@ -107,7 +115,7 @@ class EnvLabel {
     }
   }
 
-  private hoverHandler = (label: Label) => (event: MouseEvent) => {
+  private hoverHandler = (event: MouseEvent) => {
     if (!this.labelElement) {
       return;
     }
@@ -120,9 +128,11 @@ class EnvLabel {
       event.clientY >= top &&
       event.clientY <= top + height;
 
-    this.labelElement.style.opacity = isHovering
-      ? String(label.hoveredOpacity)
-      : String(label.opacity);
+    if (isHovering) {
+      this.labelElement.classList.add(classes.hovered);
+    } else {
+      this.labelElement.classList.remove(classes.hovered);
+    }
   };
 }
 

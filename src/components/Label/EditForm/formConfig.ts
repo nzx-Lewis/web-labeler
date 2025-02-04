@@ -18,10 +18,16 @@ export const editLabelFormInput = (
     shape: shapes[0],
     position: positions[0],
     rules: isNew ? [] : [{ type: ruleTypes[0], value: "" }],
+    hoveredOpacity: 0.5,
+    fontSize: 12,
+    scale: 1,
   },
   enhanceGetInputProps: (payload) => ({
     disabled:
-      (payload.field === "textColor" || payload.field === "position") &&
+      (payload.field === "textColor" ||
+        payload.field === "position" ||
+        payload.field === "hoveredOpacity" ||
+        payload.field === "fontSize") &&
       payload.form.values.shape === "frame",
   }),
   validate: {

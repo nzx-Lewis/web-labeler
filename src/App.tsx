@@ -28,10 +28,10 @@ import { OptionsProvider } from "./options/context.tsx";
 // 11. Tooltip features:
 // 11.1 UI control for switching between label positions
 // 11.2 Quick add active tab url to specific label rule
-// 12. Appearance customization:
-// 12.1 Label and font size customization
-// 12.2 Mouse over transparency
-// 12.3 Multiline name field
+// ☑️ 12. Appearance customization:
+// ☑️ 12.1 Label and font size customization
+// ☑️ 12.2 Mouse over transparency
+// ☑️ 12.3 Multiline name field
 // 13. Rules:
 // 13.1 Apply label by cookie key/value
 

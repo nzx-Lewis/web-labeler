@@ -19,7 +19,7 @@ function LabelListItemActions({ label }: LabelListItemActionsProps) {
         onClick={() => {
           modals.open({
             title: "Edit Label Appearance",
-            size: "lg",
+            size: "auto",
             children: (
               <LabelEditForm
                 label={label}

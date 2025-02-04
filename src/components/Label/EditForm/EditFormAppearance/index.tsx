@@ -5,8 +5,9 @@ import {
   SegmentedControl,
   Slider,
   Stack,
-  TextInput,
   Fieldset,
+  Textarea,
+  Flex,
 } from "@mantine/core";
 import {
   colorSwatches,
@@ -20,14 +21,16 @@ function LabelEditFormAppearance() {
   const form = useLabelEditFormContext();
 
   return (
-    <Fieldset legend="Appearance & Position">
-      <Group align="stretch" wrap="nowrap">
-        <Stack gap="xs" style={{ width: "400px" }}>
-          <TextInput
+    <Flex gap="sm" wrap="wrap">
+      <Fieldset legend="Settings" style={{ flexGrow: 1 }}>
+        <Stack gap="xs">
+          <Textarea
             label="Name"
             placeholder="Name"
             key={form.key("name")}
             {...form.getInputProps("name")}
+            minRows={1}
+            maxRows={3}
           />
           <Group gap="xs" grow wrap="nowrap">
             <ColorInput
@@ -48,17 +51,54 @@ function LabelEditFormAppearance() {
             />
           </Group>
 
-          <Input.Wrapper label="Opacity">
-            <Slider
-              color="gray"
-              label={(value) => `${Math.round(value * 100)}%`}
-              min={0.1}
-              max={1}
-              step={0.05}
-              key={form.key("opacity")}
-              {...form.getInputProps("opacity")}
-            />
-          </Input.Wrapper>
+          <Group grow>
+            <Input.Wrapper label="Opacity">
+              <Slider
+                color="gray"
+                label={(value) => `${Math.round(value * 100)}%`}
+                min={0.1}
+                max={1}
+                step={0.05}
+                key={form.key("opacity")}
+                {...form.getInputProps("opacity")}
+              />
+            </Input.Wrapper>
+            <Input.Wrapper label="Hovered Opacity">
+              <Slider
+                color="gray"
+                label={(value) => `${Math.round(value * 100)}%`}
+                min={0}
+                max={1}
+                step={0.05}
+                key={form.key("hoveredOpacity")}
+                {...form.getInputProps("hoveredOpacity")}
+              />
+            </Input.Wrapper>
+          </Group>
+
+          <Group grow>
+            <Input.Wrapper label="Scale">
+              <Slider
+                color="gray"
+                min={0.5}
+                max={2}
+                step={0.05}
+                key={form.key("scale")}
+                {...form.getInputProps("scale")}
+              />
+            </Input.Wrapper>
+            <Input.Wrapper label="Font Size">
+              <Slider
+                color="gray"
+                label={(value) => `${value.toFixed(1)}px`}
+                min={10}
+                max={30}
+                step={0.1}
+                key={form.key("fontSize")}
+                {...form.getInputProps("fontSize")}
+              />
+            </Input.Wrapper>
+          </Group>
 
           <SegmentedControl
             data={[...shapes]}
@@ -72,9 +112,11 @@ function LabelEditFormAppearance() {
             {...form.getInputProps("position")}
           />
         </Stack>
+      </Fieldset>
+      <Fieldset legend="Preview" style={{ flexGrow: 1 }}>
         <LabelPreview label={{ ...form.getValues() }} />
-      </Group>
-    </Fieldset>
+      </Fieldset>
+    </Flex>
   );
 }
 
