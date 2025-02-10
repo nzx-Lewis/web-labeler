@@ -14,6 +14,8 @@ export const positions: string[] = [
   "right-bottom",
 ] as const;
 
+export type Position = (typeof positions)[number];
+
 export const colorSwatches = [
   "#fa5252",
   "#e64980",

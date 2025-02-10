@@ -18,11 +18,11 @@ import { OptionsProvider } from "./options/context.tsx";
 // 6.2 By timer (autoupdate)
 // ☑️ 7. Draggable labels in the list
 // 8. UI improvements:
-// 8.1 user friendly position selector in the edit form,
+// ☑️ 8.1 user-friendly position selector in the edit form,
 // 8.2 ribbon/triangle icons for labels in the edit form and in the labels' badges
 // ☑️ 8.3 confirmation dialog on delete label and delete all actions
 // ☑️ 8.4 add on/off control for each label into the popup
-// 8.5 Split appearance and rules label settings into 2 different dialogs
+// ☑️ 8.5 Split appearance and rules label settings into 2 different dialogs
 // 9. Support regexp or special symbols like *
 // ☑️ 10. Dark mode
 // 11. Tooltip features:

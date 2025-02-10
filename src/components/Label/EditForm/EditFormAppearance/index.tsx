@@ -9,13 +9,10 @@ import {
   Textarea,
   Flex,
 } from "@mantine/core";
-import {
-  colorSwatches,
-  positions,
-  shapes,
-} from "../../../../options/constants.ts";
+import { colorSwatches, shapes } from "../../../../options/constants.ts";
 import LabelPreview from "../../Preview";
 import { useLabelEditFormContext } from "../formContext.ts";
+import PositionControls from "./PositionControls";
 
 function LabelEditFormAppearance() {
   const form = useLabelEditFormContext();
@@ -23,7 +20,7 @@ function LabelEditFormAppearance() {
   return (
     <Flex gap="sm" wrap="wrap">
       <Fieldset legend="Settings" style={{ flexGrow: 1 }}>
-        <Stack gap="xs">
+        <Stack gap="sm">
           <Textarea
             label="Name"
             placeholder="Name"
@@ -105,16 +102,12 @@ function LabelEditFormAppearance() {
             key={form.key("shape")}
             {...form.getInputProps("shape")}
           />
-
-          <SegmentedControl
-            data={[...positions]}
-            key={form.key("position")}
-            {...form.getInputProps("position")}
-          />
         </Stack>
       </Fieldset>
       <Fieldset legend="Preview" style={{ flexGrow: 1 }}>
-        <LabelPreview label={{ ...form.getValues() }} />
+        <LabelPreview label={{ ...form.getValues() }}>
+          <PositionControls />
+        </LabelPreview>
       </Fieldset>
     </Flex>
   );

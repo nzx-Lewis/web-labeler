@@ -3,12 +3,14 @@ import classes from "./style.module.scss";
 import clsx from "clsx";
 import { Card } from "@mantine/core";
 import { nlToBr } from "../../../utils/common.ts";
+import { ReactNode } from "react";
 
 interface LabelPreviewProps {
   label: Omit<Label, "id" | "isActive">;
+  children?: ReactNode;
 }
 
-function LabelPreview({ label }: LabelPreviewProps) {
+function LabelPreview({ label, children }: LabelPreviewProps) {
   return (
     <Card padding="lg" radius="sm" withBorder className={classes.labelPreview}>
       <span>Window</span>
@@ -34,6 +36,7 @@ function LabelPreview({ label }: LabelPreviewProps) {
           __html: label.shape !== "frame" ? nlToBr(label.name) : "",
         }}
       ></div>
+      {label.shape !== "frame" && children}
     </Card>
   );
 }
