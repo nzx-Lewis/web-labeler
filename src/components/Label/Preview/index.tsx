@@ -24,6 +24,7 @@ function LabelPreview({ label, children }: LabelPreviewProps) {
           {
             position: "absolute",
             pointerEvents: "unset",
+            zIndex: "unset",
             "--label-text-color": label.textColor,
             "--label-background-color": label.bgColor,
             "--label-opacity": label.opacity,
