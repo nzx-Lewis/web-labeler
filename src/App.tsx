@@ -1,11 +1,11 @@
-import {MantineProvider} from "@mantine/core";
-import {ModalsProvider} from "@mantine/modals";
+import { MantineProvider } from "@mantine/core";
+import { ModalsProvider } from "@mantine/modals";
 import Popup from "./pages/Popup";
 import OptionsPage from "./pages/OptionsPage";
 import "@mantine/core/styles.css";
 import "@mantine/dropzone/styles.css";
 import "./style.scss";
-import {OptionsProvider} from "./options/context.tsx";
+import { OptionsProvider } from "./options/context.tsx";
 
 //TODO:
 // ☑️ 1. Opacity and isActive props for Labels
@@ -17,7 +17,7 @@ import {OptionsProvider} from "./options/context.tsx";
 // 6.1 By user action (sync button)
 // 6.2 By timer (autoupdate)
 // ☑️ 7. Draggable labels in the list
-// 8. UI improvements:
+// ☑️ 8. UI improvements:
 // ☑️ 8.1 user-friendly position selector in the edit form,
 // ️☑️ 8.2 ribbon/triangle/frame icons for labels in the edit form
 // ☑️ 8.3 confirmation dialog on delete label and delete all actions
@@ -36,15 +36,15 @@ import {OptionsProvider} from "./options/context.tsx";
 // 13.1 Apply label by cookie key/value
 
 function App() {
-    return (
-        <MantineProvider defaultColorScheme="auto">
-            <OptionsProvider>
-                <ModalsProvider>
-                    {window.location.hash === "#popup" ? <Popup/> : <OptionsPage/>}
-                </ModalsProvider>
-            </OptionsProvider>
-        </MantineProvider>
-    );
+  return (
+    <MantineProvider defaultColorScheme="auto">
+      <OptionsProvider>
+        <ModalsProvider>
+          {window.location.hash === "#popup" ? <Popup /> : <OptionsPage />}
+        </ModalsProvider>
+      </OptionsProvider>
+    </MantineProvider>
+  );
 }
 
 export default App;

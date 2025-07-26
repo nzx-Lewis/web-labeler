@@ -1,9 +1,14 @@
 import { Position } from "../../../../../options/constants.ts";
-import { PositionSettings, positionSettings } from "./settings.tsx";
+import {
+  PositionSettings,
+  cornerPositionSettings,
+  sidePositionSettings,
+} from "./settings.tsx";
 import { ActionIcon } from "@mantine/core";
 import { useLabelEditFormContext } from "../../formContext.ts";
+import { PositionControlsProps } from "./types.ts";
 
-const PositionControls = () => {
+const PositionControls = ({ mode }: PositionControlsProps) => {
   const {
     values: { position },
     setValues,
@@ -15,7 +20,9 @@ const PositionControls = () => {
 
   return (
     <>
-      {Object.entries(positionSettings).map(([key, settings]) => {
+      {Object.entries(
+        mode === "corners" ? cornerPositionSettings : sidePositionSettings,
+      ).map(([key, settings]) => {
         const positionValue = key as Position;
         const { icon, style } = settings as PositionSettings;
 

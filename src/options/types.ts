@@ -1,67 +1,71 @@
-import {ruleTypes, Position, Shape} from "./constants.ts";
+import { ruleTypes, Position, Shape, Border } from "./constants.ts";
 
 export interface Label {
-    id: string;
-    name: string;
-    bgColor: string;
-    textColor: string;
-    opacity: number;
-    rules: Rule[];
-    shape: Shape;
-    position: Position;
-    isActive: boolean;
+  id: string;
+  name: string;
+  bgColor: string;
+  textColor: string;
+  opacity: number;
+  rules: Rule[];
+  shape: Shape;
+  position: Position;
+  isActive: boolean;
 
-    hoveredOpacity?: number;
-    fontSize?: number;
-    scale?: number;
+  hoveredOpacity?: number;
+  fontSize?: number;
+  scale?: number;
+
+  border?: Border;
+  borderColor?: string;
+  borderWidth?: number;
 }
 
 export interface Rule {
-    type: (typeof ruleTypes)[number];
-    value: string;
+  type: (typeof ruleTypes)[number];
+  value: string;
 }
 
 export interface Options {
-    labels: Label[];
-    isActive: boolean;
+  labels: Label[];
+  isActive: boolean;
 }
 
 export type OptionsAction =
-    | {
-    type: "addLabel";
-    payload: { label: Omit<Label, "id"> };
-}
-    | {
-    type: "updateLabel";
-    payload: { label: Label };
-}
-    | {
-    type: "toggleLabelStatus";
-    payload: Pick<Label, "id">;
-}
-    | {
-    type: "deleteLabel";
-    payload: Pick<Label, "id">;
-}
-    | {
-    type: "reorderLabels";
-    payload: {
+  | {
+      type: "addLabel";
+      payload: { label: Omit<Label, "id"> };
+    }
+  | {
+      type: "updateLabel";
+      payload: { label: Label };
+    }
+  | {
+      type: "toggleLabelStatus";
+      payload: Pick<Label, "id">;
+    }
+  | {
+      type: "deleteLabel";
+      payload: Pick<Label, "id">;
+    }
+  | {
+      type: "reorderLabels";
+      payload: {
         sourceIndex: number;
         destinationIndex: number;
+      };
+    }
+  | {
+      type: "mergeLabels";
+      payload: { labels: (Omit<Label, "id"> & Partial<Pick<Label, "id">>)[] };
+    }
+  | {
+      type: "toggleActive";
+      payload?: { force: true };
+    }
+  | {
+      type: "deleteAllLabels";
+    }
+  | {
+      type: "initialize";
+      payload: Options;
     };
-}
-    | {
-    type: "mergeLabels";
-    payload: { labels: (Omit<Label, "id"> & Partial<Pick<Label, "id">>)[] };
-}
-    | {
-    type: "toggleActive";
-    payload?: { force: true };
-}
-    | {
-    type: "deleteAllLabels";
-}
-    | {
-    type: "initialize";
-    payload: Options;
-};

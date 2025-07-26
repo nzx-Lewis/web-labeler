@@ -21,14 +21,22 @@ export const editLabelFormInput = (
     hoveredOpacity: 0.5,
     fontSize: 12,
     scale: 1,
+    border: "none",
+    borderColor: colorSwatches[colorSwatches.length - 1],
+    borderWidth: 1,
   },
   enhanceGetInputProps: (payload) => ({
     disabled:
-      (payload.field === "textColor" ||
+      ((payload.field === "textColor" ||
         payload.field === "position" ||
         payload.field === "hoveredOpacity" ||
-        payload.field === "fontSize") &&
-      payload.form.values.shape === "frame",
+        payload.field === "fontSize" ||
+        payload.field === "border" ||
+        payload.field === "borderColor" ||
+        payload.field === "borderWidth") &&
+        payload.form.values.shape === "frame") ||
+      ((payload.field === "borderColor" || payload.field === "borderWidth") &&
+        payload.form.values.border === "none"),
   }),
   validate: {
     rules: {

@@ -5,6 +5,9 @@
   --label-font-size: 12px;
   --label-scale: 1;
   --label-hovered-opacity: 1;
+  --label-border-style: none;
+  --label-border-width: unset;
+  --label-border-color: unset;
 
   pointer-events: none;
   user-select: none;
@@ -23,6 +26,10 @@
   line-height: var(--label-font-size);
   padding: 4px;
   font-weight: bold;
+
+  border-style: var(--label-border-style);
+  border-width: var(--label-border-width);
+  border-color: var(--label-border-color);
 
   color: var(--label-text-color);
   background-color: var(--label-background-color);
@@ -95,6 +102,41 @@
       bottom: 0;
       transform: translate(50%, 50%) rotate(-45deg);
       align-items: start;
+    }
+  }
+
+  &.banner {
+    &.left-top {
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: calc(26px * var(--label-scale));
+    }
+
+    &.right-top {
+      right: 0;
+      top: 0;
+      width: calc(26px * var(--label-scale));
+      height: 100%;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+    }
+
+    &.left-bottom {
+      left: 0;
+      top: 0;
+      width: calc(26px * var(--label-scale));
+      height: 100%;
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+    }
+
+    &.right-bottom {
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: calc(26px * var(--label-scale));
     }
   }
 

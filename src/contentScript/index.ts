@@ -5,6 +5,7 @@ import classes from "./style.module.scss";
 class EnvLabel {
   private labelElement: HTMLDivElement | null;
   private hoverListener: ((event: MouseEvent) => void) | null;
+
   constructor() {
     this.labelElement = null;
     this.hoverListener = null;
@@ -12,6 +13,7 @@ class EnvLabel {
 
     chrome.storage.sync.onChanged.addListener(this.initialize);
   }
+
   private initialize = async () => {
     this.removeLabelFromDom();
     if (this.hoverListener) {
@@ -89,7 +91,7 @@ class EnvLabel {
       "--label-background-color",
       label.bgColor,
     );
-    if (label.hoveredOpacity !== undefined) {
+    if (label?.hoveredOpacity !== undefined) {
       this.labelElement.style.setProperty(
         "--label-hovered-opacity",
         String(label.hoveredOpacity),
@@ -101,8 +103,26 @@ class EnvLabel {
         String(label.fontSize) + "px",
       );
     }
-    if (label.scale) {
+    if (label?.scale) {
       this.labelElement.style.setProperty("--label-scale", String(label.scale));
+    }
+    if (label?.border) {
+      this.labelElement.style.setProperty(
+        "--label-border-style",
+        String(label.border),
+      );
+    }
+    if (label?.borderColor) {
+      this.labelElement.style.setProperty(
+        "--label-border-color",
+        String(label.borderColor),
+      );
+    }
+    if (label?.borderWidth !== undefined) {
+      this.labelElement.style.setProperty(
+        "--label-border-width",
+        String(label.borderWidth) + "px",
+      );
     }
 
     document.body.appendChild(this.labelElement);

@@ -30,6 +30,9 @@ function LabelPreview({ label, children }: LabelPreviewProps) {
             "--label-hovered-opacity": label.hoveredOpacity,
             "--label-scale": label.scale,
             "--label-font-size": label.fontSize + "px",
+            "--label-border-style": label.border,
+            "--label-border-color": label.borderColor,
+            "--label-border-width": label.borderWidth + "px",
           } as React.CSSProperties
         }
         dangerouslySetInnerHTML={{
