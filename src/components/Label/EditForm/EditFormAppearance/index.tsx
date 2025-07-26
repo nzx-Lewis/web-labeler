@@ -25,7 +25,7 @@ function LabelEditFormAppearance() {
   const [expanded, { toggle, open }] = useDisclosure(false);
 
   useEffect(() => {
-    if (form.values.border !== "none") {
+    if (form.values.border !== "none" && form.values.shape !== "frame") {
       open();
     }
   }, [form.values.border, open]);
