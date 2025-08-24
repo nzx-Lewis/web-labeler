@@ -12,6 +12,7 @@ import ConfigurationManager from "../../components/ConfigurationManager";
 import ThemeSwitcher from "../../components/ThemeSwitcher";
 import classes from "./style.module.scss";
 import { useOptionsContext } from "../../hooks/useOptionsContext";
+import Footer from "../../components/Footer";
 
 function OptionsPage() {
   const { options, dispatch } = useOptionsContext();
@@ -39,12 +40,11 @@ function OptionsPage() {
             <ThemeSwitcher />
           </Group>
         </Group>
-
         <Paper shadow="xs" p="xl" className={classes.labelListContainer}>
           <LabelList />
         </Paper>
-
         <ConfigurationManager labels={options.labels} dispatch={dispatch} />
+        <Footer />
       </Stack>
     </Container>
   );

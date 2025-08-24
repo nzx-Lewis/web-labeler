@@ -1,0 +1,12 @@
+.borderControlOption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  text-transform: capitalize;
+
+  svg {
+    height: 16px;
+  }
+;
+}

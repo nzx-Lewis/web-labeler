@@ -1,0 +1,12 @@
+
+.rateButton {
+  svg {
+    transition: transform .3s;
+  }
+
+  &:hover {
+    svg {
+      transform: scale(1.25);
+    }
+  }
+}

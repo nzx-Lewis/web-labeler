@@ -31,7 +31,7 @@ function LabelList() {
               </Table.Th>
               <Table.Th>Label Name</Table.Th>
               <Table.Th>Rules</Table.Th>
-              <Table.Th>Status</Table.Th>
+              <Table.Th>Settings</Table.Th>
               <Table.Th>Actions</Table.Th>
             </Table.Tr>
           </Table.Thead>

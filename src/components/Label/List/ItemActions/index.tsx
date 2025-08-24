@@ -1,40 +1,36 @@
-import { Button, Group } from "@mantine/core";
-import { IconEdit, IconTrash } from "@tabler/icons-react";
+import { ActionIcon, Group, Switch } from "@mantine/core";
+import { IconTrash } from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
-import LabelEditForm from "../../EditForm";
 import ConfirmationModal from "../../../ConfirmationModal";
 import { LabelListItemActionsProps } from "./types.ts";
 import { useOptionsContext } from "../../../../hooks/useOptionsContext";
 
-function LabelListItemActions({ label }: LabelListItemActionsProps) {
+function LabelListItemActions({
+  label,
+  isAllActive,
+}: LabelListItemActionsProps) {
   const { dispatch } = useOptionsContext();
 
   return (
     <Group gap="xs">
-      <Button
-        size="xs"
-        variant="light"
-        leftSection={<IconEdit size={14} />}
-        onClick={() => {
-          modals.open({
-            title: "Edit label",
-            size: "auto",
-            children: (
-              <LabelEditForm label={label} onSave={() => modals.closeAll()} />
-            ),
+      <Switch
+        disabled={!isAllActive}
+        checked={label.isActive}
+        onChange={() => {
+          dispatch({
+            type: "toggleLabelStatus",
+            payload: { id: label.id },
           });
         }}
-      >
-        Edit
-      </Button>
-      <Button
-        size="xs"
+      />
+      <ActionIcon
+        size="md"
+        radius="xl"
         variant="light"
-        leftSection={<IconTrash size={14} />}
         onClick={() => {
           modals.open({
             title: "Delete Label",
-            size: "auto",
+            size: "lg",
             children: (
               <ConfirmationModal
                 message={`Are you sure you want to delete the label "${label.name || "[noname]"}"?`}
@@ -51,8 +47,8 @@ function LabelListItemActions({ label }: LabelListItemActionsProps) {
           });
         }}
       >
-        Delete
-      </Button>
+        <IconTrash size={14} />
+      </ActionIcon>
     </Group>
   );
 }

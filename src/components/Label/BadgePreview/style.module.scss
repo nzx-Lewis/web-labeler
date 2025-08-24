@@ -1,0 +1,47 @@
+@use "../../../contentScript/style.module" as *;
+
+.badgePreview {
+  --label-preview-stripped-bg-color1: rgba(255, 255, 255, 0.1);
+  --label-preview-stripped-bg-color2: rgba(255, 255, 255, 0.15);
+}
+
+:root[data-mantine-color-scheme='light'] {
+  .badgePreview {
+    --label-preview-stripped-bg-color1: rgba(0, 0, 0, 0.1);
+    --label-preview-stripped-bg-color2: rgba(0, 0, 0, 0.15);
+  }
+}
+
+.badgePreview {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  min-width: 300px;
+  height: 100%;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+
+  background: repeating-linear-gradient(
+                  45deg,
+                  var(--label-preview-stripped-bg-color1),
+                  var(--label-preview-stripped-bg-color1) 5px,
+                  var(--label-preview-stripped-bg-color2) 5px,
+                  var(--label-preview-stripped-bg-color2) 10px
+  );
+
+  > span {
+    font-size: 40px;
+    opacity: 0.05;
+  }
+
+  button {
+    svg {
+      stroke-width: 2;
+      width: 70%;
+      height: 70%;
+    }
+  }
+}

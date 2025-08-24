@@ -1,4 +1,4 @@
-import { ruleTypes, shapes, positions } from "./constants.ts";
+import { ruleTypes, Position, Shape, Border, IconStyle } from "./constants.ts";
 
 export interface Label {
   id: string;
@@ -7,9 +7,19 @@ export interface Label {
   textColor: string;
   opacity: number;
   rules: Rule[];
-  shape: (typeof shapes)[number];
-  position: (typeof positions)[number];
+  shape: Shape;
+  position: Position;
   isActive: boolean;
+
+  hoveredOpacity?: number;
+  fontSize?: number;
+  scale?: number;
+
+  border?: Border;
+  borderColor?: string;
+  borderWidth?: number;
+
+  iconStyle?: IconStyle;
 }
 
 export interface Rule {

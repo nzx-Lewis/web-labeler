@@ -1,6 +1,6 @@
 import LabelEditForm from "./EditForm";
 import LabelList from "./List";
-import LabelPreview from "./Preview";
+import BadgePreview from "./BadgePreview";
 
-export { LabelEditForm, LabelPreview };
+export { LabelEditForm, BadgePreview };
 export default LabelList;

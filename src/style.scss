@@ -1,9 +1,13 @@
-body{
-  min-width:250px;
+body {
+  min-width: 250px;
 }
 
 :root[data-mantine-color-scheme='light'] {
-  body{
+  body {
     background-color: var(--mantine-color-gray-0);
   }
+}
+
+.mantine-ColorInput-input:disabled {
+  --input-padding-inline-end: var(--input-right-section-size);
 }

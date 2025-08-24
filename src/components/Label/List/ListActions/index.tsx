@@ -4,6 +4,7 @@ import { modals } from "@mantine/modals";
 import LabelEditForm from "../../EditForm";
 import ConfirmationModal from "../../../ConfirmationModal";
 import { useOptionsContext } from "../../../../hooks/useOptionsContext";
+import { LabelEditFormSection } from "../../EditForm/types.ts";
 
 function LabelListActions() {
   const { options, dispatch } = useOptionsContext();
@@ -18,7 +19,12 @@ function LabelListActions() {
           modals.open({
             title: "New Label",
             size: "auto",
-            children: <LabelEditForm onSave={() => modals.closeAll()} />,
+            children: (
+              <LabelEditForm
+                section={LabelEditFormSection.Badge}
+                onSave={() => modals.closeAll()}
+              />
+            ),
           });
         }}
       >
