@@ -1,6 +1,5 @@
 import { Label } from "../../../../options/types.ts";
 
-export interface LabelListItemActionsProps {
+export interface LabelListItemSettingsProps {
   label: Label;
-  isAllActive?: boolean;
 }

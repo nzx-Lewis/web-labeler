@@ -11,7 +11,7 @@ import {
   Collapse,
 } from "@mantine/core";
 import { colorSwatches } from "../../../../options/constants.ts";
-import LabelPreview from "../../Preview";
+import BadgePreview from "../../BadgePreview";
 import { useLabelEditFormContext } from "../formContext.ts";
 import PositionControls from "./PositionControls";
 import ShapeSwitcher from "./ShapeSwitcher";
@@ -20,7 +20,7 @@ import { useDisclosure } from "@mantine/hooks";
 import CollapseButton from "./CollapseButton";
 import { useEffect } from "react";
 
-function LabelEditFormAppearance() {
+function LabelEditFormBadge() {
   const form = useLabelEditFormContext();
   const [expanded, { toggle, open }] = useDisclosure(false);
 
@@ -158,14 +158,14 @@ function LabelEditFormAppearance() {
         <CollapseButton expanded={expanded} toggle={toggle} />
       </Fieldset>
       <Fieldset legend="Preview" style={{ flexGrow: 1 }}>
-        <LabelPreview label={{ ...form.getValues() }}>
+        <BadgePreview label={{ ...form.getValues() }}>
           <PositionControls
             mode={form.values.shape === "banner" ? "sides" : "corners"}
           />
-        </LabelPreview>
+        </BadgePreview>
       </Fieldset>
     </Flex>
   );
 }
 
-export default LabelEditFormAppearance;
+export default LabelEditFormBadge;

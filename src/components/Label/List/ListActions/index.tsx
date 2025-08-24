@@ -21,7 +21,7 @@ function LabelListActions() {
             size: "auto",
             children: (
               <LabelEditForm
-                section={LabelEditFormSection.Appearance}
+                section={LabelEditFormSection.Badge}
                 onSave={() => modals.closeAll()}
               />
             ),

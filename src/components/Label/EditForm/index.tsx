@@ -6,11 +6,12 @@ import {
 } from "./types.ts";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 import { useLabelEditForm, LabelEditFormProvider } from "./formContext.ts";
-import LabelEditFormAppearance from "./EditFormAppearance";
+import LabelEditFormBadge from "./EditFormBadge";
 import LabelEditFormRules from "./EditFormRules";
 import { useCallback, useEffect } from "react";
 import { editLabelFormInput } from "./formConfig.ts";
 import { useOptionsContext } from "../../../hooks/useOptionsContext";
+import LabelEditFormIcon from "./EditFormIcon";
 
 function LabelEditForm({ label, onSave, section }: LabelEditFormProps) {
   const isNew = !label?.rules.length;
@@ -46,9 +47,8 @@ function LabelEditForm({ label, onSave, section }: LabelEditFormProps) {
   return (
     <LabelEditFormProvider form={form}>
       <form onSubmit={form.onSubmit(onFormSubmitHandler)}>
-        {section == LabelEditFormSection.Appearance && (
-          <LabelEditFormAppearance />
-        )}
+        {section == LabelEditFormSection.Badge && <LabelEditFormBadge />}
+        {section === LabelEditFormSection.Icon && <LabelEditFormIcon />}
         {section === LabelEditFormSection.Rules && <LabelEditFormRules />}
         <Button
           mt="md"

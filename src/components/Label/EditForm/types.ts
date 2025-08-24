@@ -9,6 +9,7 @@ export interface LabelEditFormProps {
 export type LabelEditFormValues = Omit<Label, "id" | "isActive">;
 
 export enum LabelEditFormSection {
-  Appearance,
+  Badge,
+  Icon,
   Rules,
 }

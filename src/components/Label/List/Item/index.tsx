@@ -1,13 +1,11 @@
-import { Badge, HoverCard, List, Switch, Table } from "@mantine/core";
+import { Badge, HoverCard, List, Table } from "@mantine/core";
 import { IconGripVertical, IconTag } from "@tabler/icons-react";
 import { LabelListItemProps } from "./types.ts";
 import LabelListItemActions from "../ItemActions";
 import { Draggable } from "@hello-pangea/dnd";
-import { useOptionsContext } from "../../../../hooks/useOptionsContext";
+import LabelListItemSettings from "../ItemSettings";
 
 function LabelListItem({ label, index, isAllActive }: LabelListItemProps) {
-  const { dispatch } = useOptionsContext();
-
   return (
     <Draggable key={label.id} index={index} draggableId={label.id}>
       {(provided) => (
@@ -48,19 +46,10 @@ function LabelListItem({ label, index, isAllActive }: LabelListItemProps) {
             </HoverCard>
           </Table.Td>
           <Table.Td>
-            <Switch
-              disabled={!isAllActive}
-              checked={label.isActive}
-              onChange={() => {
-                dispatch({
-                  type: "toggleLabelStatus",
-                  payload: { id: label.id },
-                });
-              }}
-            />
+            <LabelListItemSettings label={label} />
           </Table.Td>
           <Table.Td>
-            <LabelListItemActions label={label} />
+            <LabelListItemActions label={label} isAllActive={isAllActive} />
           </Table.Td>
         </Table.Tr>
       )}

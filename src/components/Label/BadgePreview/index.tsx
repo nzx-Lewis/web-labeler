@@ -5,14 +5,14 @@ import { Card } from "@mantine/core";
 import { nlToBr } from "../../../utils/common.ts";
 import { ReactNode } from "react";
 
-interface LabelPreviewProps {
+interface BadgePreviewProps {
   label: Omit<Label, "id" | "isActive">;
   children?: ReactNode;
 }
 
-function LabelPreview({ label, children }: LabelPreviewProps) {
+function BadgePreview({ label, children }: BadgePreviewProps) {
   return (
-    <Card padding="lg" radius="sm" withBorder className={classes.labelPreview}>
+    <Card padding="lg" radius="sm" withBorder className={classes.badgePreview}>
       <span>Window</span>
       <div
         className={clsx(
@@ -45,4 +45,4 @@ function LabelPreview({ label, children }: LabelPreviewProps) {
   );
 }
 
-export default LabelPreview;
+export default BadgePreview;

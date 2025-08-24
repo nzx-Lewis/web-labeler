@@ -1,61 +1,32 @@
-import { Button, Group } from "@mantine/core";
-import { IconResize, IconTextGrammar, IconTrash } from "@tabler/icons-react";
+import { ActionIcon, Group, Switch } from "@mantine/core";
+import { IconTrash } from "@tabler/icons-react";
 import { modals } from "@mantine/modals";
-import LabelEditForm from "../../EditForm";
 import ConfirmationModal from "../../../ConfirmationModal";
 import { LabelListItemActionsProps } from "./types.ts";
 import { useOptionsContext } from "../../../../hooks/useOptionsContext";
-import { LabelEditFormSection } from "../../EditForm/types.ts";
 
-function LabelListItemActions({ label }: LabelListItemActionsProps) {
+function LabelListItemActions({
+  label,
+  isAllActive,
+}: LabelListItemActionsProps) {
   const { dispatch } = useOptionsContext();
 
   return (
     <Group gap="xs">
-      <Button
-        size="xs"
-        variant="light"
-        leftSection={<IconResize size={14} />}
-        onClick={() => {
-          modals.open({
-            title: "Edit Label Appearance",
-            size: "auto",
-            children: (
-              <LabelEditForm
-                label={label}
-                section={LabelEditFormSection.Appearance}
-                onSave={() => modals.closeAll()}
-              />
-            ),
+      <Switch
+        disabled={!isAllActive}
+        checked={label.isActive}
+        onChange={() => {
+          dispatch({
+            type: "toggleLabelStatus",
+            payload: { id: label.id },
           });
         }}
-      >
-        Appearance
-      </Button>
-      <Button
-        size="xs"
+      />
+      <ActionIcon
+        size="md"
+        radius="xl"
         variant="light"
-        leftSection={<IconTextGrammar size={14} />}
-        onClick={() => {
-          modals.open({
-            title: "Edit Label Rules",
-            size: "lg",
-            children: (
-              <LabelEditForm
-                label={label}
-                section={LabelEditFormSection.Rules}
-                onSave={() => modals.closeAll()}
-              />
-            ),
-          });
-        }}
-      >
-        Rules
-      </Button>
-      <Button
-        size="xs"
-        variant="light"
-        leftSection={<IconTrash size={14} />}
         onClick={() => {
           modals.open({
             title: "Delete Label",
@@ -76,8 +47,8 @@ function LabelListItemActions({ label }: LabelListItemActionsProps) {
           });
         }}
       >
-        Delete
-      </Button>
+        <IconTrash size={14} />
+      </ActionIcon>
     </Group>
   );
 }

@@ -24,6 +24,7 @@ export const editLabelFormInput = (
     border: "none",
     borderColor: colorSwatches[colorSwatches.length - 1],
     borderWidth: 1,
+    iconStyle: "badge",
   },
   enhanceGetInputProps: (payload) => ({
     disabled:

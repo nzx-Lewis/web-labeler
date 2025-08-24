@@ -1,19 +1,19 @@
 @use "../../../contentScript/style.module" as *;
 
-.labelPreview {
-  --label-preview-stripped-bg-color1: rgba(255,255,255,0.1);
-  --label-preview-stripped-bg-color2: rgba(255,255,255,0.15);
+.badgePreview {
+  --label-preview-stripped-bg-color1: rgba(255, 255, 255, 0.1);
+  --label-preview-stripped-bg-color2: rgba(255, 255, 255, 0.15);
 }
 
 :root[data-mantine-color-scheme='light'] {
-  .labelPreview {
-    --label-preview-stripped-bg-color1: rgba(0,0,0,0.1);
-    --label-preview-stripped-bg-color2: rgba(0,0,0,0.15);
+  .badgePreview {
+    --label-preview-stripped-bg-color1: rgba(0, 0, 0, 0.1);
+    --label-preview-stripped-bg-color2: rgba(0, 0, 0, 0.15);
   }
 }
 
-.labelPreview{
-  overflow:hidden;
+.badgePreview {
+  overflow: hidden;
   position: relative;
   width: 100%;
   min-width: 300px;
@@ -32,13 +32,13 @@
                   var(--label-preview-stripped-bg-color2) 10px
   );
 
-  > span{
+  > span {
     font-size: 40px;
     opacity: 0.05;
   }
 
-  button{
-    svg{
+  button {
+    svg {
       stroke-width: 2;
       width: 70%;
       height: 70%;

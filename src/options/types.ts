@@ -1,4 +1,4 @@
-import { ruleTypes, Position, Shape, Border } from "./constants.ts";
+import { ruleTypes, Position, Shape, Border, IconStyle } from "./constants.ts";
 
 export interface Label {
   id: string;
@@ -18,6 +18,8 @@ export interface Label {
   border?: Border;
   borderColor?: string;
   borderWidth?: number;
+
+  iconStyle?: IconStyle;
 }
 
 export interface Rule {
