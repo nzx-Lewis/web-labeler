@@ -5,7 +5,7 @@ export const ruleTypes: string[] = [
   "matches",
 ] as const;
 
-export const shapes = ["triangle", "ribbon", "banner", "frame"] as const;
+export const shapes = ["triangle", "ribbon", "banner", "block", "frame"] as const;
 
 export type Shape = (typeof shapes)[number];
 

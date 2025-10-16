@@ -133,6 +133,9 @@ export class EnvIcon {
       case "banner":
         this.drawLabelBanner(ctx, label);
         break;
+      case "block":
+        this.drawLabelBlock(ctx, label);
+        break;
       case "frame":
         this.drawLabelFrame(ctx, label);
         break;
@@ -200,6 +203,35 @@ export class EnvIcon {
   }
 
   drawLabelBanner(ctx: CanvasRenderingContext2D, label: Label) {
+    ctx.strokeStyle = label.bgColor;
+    const lineWidth = 0.3 * this.size;
+    ctx.lineWidth = lineWidth;
+
+    ctx.beginPath();
+
+    switch (label.position) {
+      case "left-top":
+        ctx.moveTo(0, lineWidth / 2);
+        ctx.lineTo(this.size, lineWidth / 2);
+        break;
+      case "right-top":
+        ctx.moveTo(this.size - lineWidth / 2, 0);
+        ctx.lineTo(this.size - lineWidth / 2, this.size);
+        break;
+      case "right-bottom":
+        ctx.moveTo(this.size, this.size - lineWidth / 2);
+        ctx.lineTo(0, this.size - lineWidth / 2);
+        break;
+      case "left-bottom":
+        ctx.moveTo(lineWidth / 2, 0);
+        ctx.lineTo(lineWidth / 2, this.size);
+        break;
+    }
+
+    ctx.stroke();
+  }
+
+  drawLabelBlock(ctx: CanvasRenderingContext2D, label: Label) {
     ctx.strokeStyle = label.bgColor;
     const lineWidth = 0.3 * this.size;
     ctx.lineWidth = lineWidth;
