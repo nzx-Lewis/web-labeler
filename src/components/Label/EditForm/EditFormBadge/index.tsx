@@ -119,7 +119,7 @@ function LabelEditFormBadge() {
               <Slider
                 color="gray"
                 min={0.5}
-                max={2}
+                max={3}
                 step={0.05}
                 key={form.key("scale")}
                 {...form.getInputProps("scale")}
@@ -130,7 +130,7 @@ function LabelEditFormBadge() {
                 color="gray"
                 label={(value) => `${value.toFixed(1)}px`}
                 min={10}
-                max={30}
+                max={90}
                 step={0.1}
                 key={form.key("fontSize")}
                 {...form.getInputProps("fontSize")}

@@ -18,16 +18,28 @@ export const positions = [
 
 export type Position = (typeof positions)[number];
 
+// export const colorSwatches = [
+//   "#fa5252",
+//   "#e64980",
+//   "#40c057",
+//   "#82c91e",
+//   "#fab005",
+//   "#fd7e14",
+//   "#000000",
+//   "#ffffff",
+// ] as const;
+
 export const colorSwatches = [
-  "#fa5252",
-  "#e64980",
-  "#40c057",
-  "#82c91e",
+  "#287271",
+  "#2A9D8F",
   "#fab005",
-  "#fd7e14",
+  "#f77f00",
+  "#d62828",
   "#000000",
   "#ffffff",
 ] as const;
+
+
 
 export const borders = ["none", "solid", "dashed", "dotted"] as const;
 export type Border = (typeof borders)[number];
