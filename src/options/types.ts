@@ -11,6 +11,7 @@ export interface Label {
   position: Position;
   isActive: boolean;
 
+  fadeAfter?: number;
   hoveredOpacity?: number;
   fontSize?: number;
   scale?: number;

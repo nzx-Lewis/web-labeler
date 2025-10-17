@@ -76,6 +76,19 @@ function LabelEditFormBadge() {
             />
           </Group>
 
+          <Stack style={{ flexGrow: 1, gap: 0 }}>
+            <Text size="sm" fw={500}>
+              Fade After (seconds)
+            </Text>
+            <Input
+              placeholder="e.g. 60"
+              type="number"
+              min={0}
+              key={form.key("fadeAfter")}
+              {...form.getInputProps("fadeAfter")}
+            />
+          </Stack>
+
           <Group gap="xs" grow>
             <Input.Wrapper label="Opacity">
               <Slider

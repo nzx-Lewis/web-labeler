@@ -19,6 +19,7 @@ export const editLabelFormInput = (
     position: positions[0],
     rules: isNew ? [] : [{ type: ruleTypes[0], value: "" }],
     hoveredOpacity: 0.5,
+    fadeAfter: 60,
     fontSize: 12,
     scale: 1,
     border: "none",
@@ -31,6 +32,7 @@ export const editLabelFormInput = (
       ((payload.field === "textColor" ||
         payload.field === "position" ||
         payload.field === "hoveredOpacity" ||
+        payload.field === "fadeAfter" ||
         payload.field === "fontSize" ||
         payload.field === "border" ||
         payload.field === "borderColor" ||
