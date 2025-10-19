@@ -1,3 +1,10 @@
+@font-face {
+  font-family: "Kollektif-Bold";
+  src: url("../assets/Kollektif-bold.tff") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 .label {
   --label-text-color: transparent;
   --label-background-color: transparent;
@@ -21,11 +28,11 @@
   box-sizing: border-box;
   overflow: hidden;
 
-  font-family: sans-serif;
+  font-family: "Kollektif-Bold", sans-serif;
   font-size: var(--label-font-size);
   line-height: var(--label-font-size);
   padding: 4px;
-  font-weight: bold;
+  font-weight: 800;
 
   border-style: var(--label-border-style);
   border-width: var(--label-border-width);
@@ -37,7 +44,8 @@
 
   transition: opacity .2s;
 
-  &:hover, &.hovered {
+  &:hover,
+  &.hovered {
     &:not(.frame) {
       opacity: var(--label-hovered-opacity);
     }
@@ -140,6 +148,41 @@
     }
   }
 
+  &.block {
+    &.left-top {
+      left: 0;
+      top: 0;
+      min-width: 5rem;
+      height: calc(26px * var(--label-scale));
+      padding: 0 1rem;
+    }
+
+    &.right-top {
+      right: 0;
+      top: 0;
+      height: calc(26px * var(--label-scale));
+      min-width: 5rem;
+      padding: 0 1rem;
+    }
+
+    &.left-bottom {
+      left: 0;
+      bottom: 0;
+      height: calc(26px * var(--label-scale));
+      min-width: 5rem;
+      padding: 0 1rem;
+    }
+
+    &.right-bottom {
+      right: 0;
+      bottom: 0;
+      min-width: 5rem;
+      height: calc(26px * var(--label-scale));
+      padding: 0 1rem;
+    }
+  }
+
+
   &.frame {
     width: 100%;
     height: 100%;
@@ -153,4 +196,3 @@
     box-shadow: inset 0 0 5px var(--label-background-color);
   }
 }
-

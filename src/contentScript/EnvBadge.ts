@@ -65,6 +65,30 @@ export class EnvBadge {
       this.hoverListener = this.hoverHandler;
       document.addEventListener("mousemove", this.hoverListener);
     }
+
+    const fadeAfter = Number(label.fadeAfter);
+    if (!isNaN(fadeAfter) && fadeAfter > 0) {
+      const showOnFocus = () => {
+        if (this.element) {
+          this.element.style.transition = "opacity 0.5s";
+          this.element.style.opacity = "1";
+          clearTimeout((this as any)._fadeTimeout);
+          (this as any)._fadeTimeout = setTimeout(() => {
+            if (this.element) this.element.style.opacity = "0";
+          }, fadeAfter * 1000);
+        }
+      };
+      window.addEventListener("focus", showOnFocus);
+
+      // Hide after fadeAfter seconds on initial render
+      this.element.style.transition = "opacity 0.5s";
+      (this as any)._fadeTimeout = setTimeout(() => {
+        if (this.element) this.element.style.opacity = "0";
+      }, fadeAfter * 1000);
+
+      // Store cleanup for remove()
+      (this as any)._focusListener = showOnFocus;
+    }
   }
 
   private remove() {
@@ -74,6 +98,14 @@ export class EnvBadge {
     if (this.element) {
       document.body.removeChild(this.element);
       this.element = null;
+    }
+    if ((this as any)._fadeTimeout) {
+      clearTimeout((this as any)._fadeTimeout);
+      (this as any)._fadeTimeout = undefined;
+    }
+    if ((this as any)._focusListener) {
+      window.removeEventListener("focus", (this as any)._focusListener);
+      (this as any)._focusListener = undefined;
     }
   }
 

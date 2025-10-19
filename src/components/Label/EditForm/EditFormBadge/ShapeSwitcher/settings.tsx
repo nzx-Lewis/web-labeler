@@ -1,5 +1,6 @@
 import {
   IconLayoutNavbarFilled,
+  IconRectangleFilled,
   IconRibbonHealth,
   IconSquareDashed,
   IconTriangle,
@@ -16,6 +17,9 @@ export const shapeSettings = {
   },
   banner: {
     icon: <IconLayoutNavbarFilled />,
+  },
+  block: {
+    icon: <IconRectangleFilled />,
   },
   frame: {
     icon: <IconSquareDashed />,
