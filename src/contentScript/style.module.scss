@@ -149,6 +149,8 @@
   }
 
   &.block {
+    padding-top: calc(var(--label-font-size) / 10);
+
     &.left-top {
       left: 0;
       top: 0;
