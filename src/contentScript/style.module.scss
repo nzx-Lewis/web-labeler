@@ -1,6 +1,6 @@
 @font-face {
   font-family: "Kollektif-Bold";
-  src: url("../assets/Kollektif-bold.tff") format("truetype");
+  src: url(chrome-extension://__MSG_@@extension_id__/Kollektif-Bold.ttf) format("truetype");
   font-weight: bold;
   font-style: normal;
 }
@@ -149,6 +149,8 @@
   }
 
   &.block {
+    padding-top: calc(var(--label-font-size) / 10) !important;
+
     &.left-top {
       left: 0;
       top: 0;

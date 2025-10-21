@@ -28,5 +28,15 @@
   ],
   "permissions": [
     "storage"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "*.ttf"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
   ]
 }
