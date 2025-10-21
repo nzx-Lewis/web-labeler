@@ -149,7 +149,7 @@
   }
 
   &.block {
-    padding-top: calc(var(--label-font-size) / 10);
+    padding-top: calc(var(--label-font-size) / 10) !important;
 
     &.left-top {
       left: 0;
